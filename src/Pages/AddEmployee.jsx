@@ -49,11 +49,18 @@ function AddEmployee(){
     const handleShow = () => setShow(true);
 
     const SeeEmployee = () => {
-        if(employee.lastname === '')
+        if(employee.lastname === ''||employee.firstname === ''||employee.middlename === ''||employee.suffix === ''||
+        employee.gender === ''||employee.birthday === ''||employee.email === ''||employee.phonenumber === ''||
+        employee.address1 === ''||employee.street === ''||employee.barangay === ''||employee.city === ''||
+        employee.city === ''||employee.province === ''||employee.postal === ''||employee.title === ''||employee.department === ''||
+        employee.dateofhire === ''||employee.active === ''||employee.salary === ''||employee.status === ''||employee.yearsofcontract === ''||
+        employee.wfh === ''||employee.emergencyName === ''||employee.emergencyStreet === ''||employee.emergencyBarangay === ''||employee.emergencyCity === ''||
+        employee.emergencyProvince === ''||employee.emergencyPostal === ''||employee.emergencyEmail === ''||employee.emergencyCell === ''||
+        employee.emergencyRelationship === ''||employee.employeeID ==='')
         {
             alert("Missing fields!");
         }else{
-            handleShow()
+
         }
     }
 
