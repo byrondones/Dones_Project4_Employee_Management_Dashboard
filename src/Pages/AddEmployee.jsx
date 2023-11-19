@@ -4,8 +4,11 @@ import firebaseApp from "../firebaseConfig";
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import { useToast } from '@chakra-ui/react'
 
 function AddEmployee(){
+    const toast = useToast();
+
     const [show, setShow] = useState(false);
     const [employeeList, setEmployeeList] = useState([]);
     const [employee, setEmployee] = useState({
@@ -654,12 +657,22 @@ function AddEmployee(){
                     Close
                 </Button>
 
-                <Button variant="primary" onClick={()=>{AddEmployeeInfo()}}>
+                <Button variant="primary" onClick={()=>{AddEmployeeInfo();toast({
+                    title: 'Employee Created',
+                    description: "Employee added to records!",
+                    status: 'success',
+                    duration: 5000,
+                    position: 'top',
+                    isClosable: true,
+                })}}>
                     Save Changes
                 </Button>
 
             </Modal.Footer>
         </Modal>
+
+        {/* Toast */}
+
         </>
     )
 }
