@@ -39,10 +39,15 @@ function EmployeeTable(){
                         <th>Employee ID</th>
                         <th>Last Name</th>
                         <th>First Name</th>
+                        <th>Middle Name</th>
+                        <th>Phone Number</th>
                         <th>Email</th>
                         <th>Title</th>
-                        <th>Account</th>
-                        <th>Logged-in</th>
+                        <th>Department</th>
+                        <th>Employment Status</th>
+                        <th>Salary (₱)</th>
+                        <th>On-leave</th>
+                        <th>Account Active</th>
                     </tr>
                 </thead>
 
@@ -55,9 +60,15 @@ function EmployeeTable(){
                                     employeeid={employeeRecord.employeeID}
                                     lastname={employeeRecord.lastname}
                                     firstname={employeeRecord.firstname}
+                                    middlename={employeeRecord.middlename}
+                                    phonenumber={employeeRecord.phonenumber}
                                     email={employeeRecord.email}
                                     title={employeeRecord.title}
-                                    account={employeeRecord.account}
+                                    department={employeeRecord.department}
+                                    status={employeeRecord.status}
+                                    salary={employeeRecord.salary}
+                                    leave={employeeRecord.leave}
+                                    account={employeeRecord.active}
                                     signedin={employeeRecord.signedin}
                                 />
                             ))
