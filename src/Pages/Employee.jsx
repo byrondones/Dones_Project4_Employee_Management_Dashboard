@@ -1,4 +1,4 @@
-function Employee({employeeid,lastname, firstname, email, title, account, signedin,key}){
+function Employee({employeeid,lastname, firstname, middlename, email, title, department, salary, account, phonenumber, status, leave, key}){
     return(
         <>
                 <td>
@@ -11,16 +11,31 @@ function Employee({employeeid,lastname, firstname, email, title, account, signed
                     {firstname}
                 </td>
                 <td>
+                    {middlename}
+                </td>
+                <td>
+                    {phonenumber}
+                </td>
+                <td>
                     {email}
                 </td>
                 <td>
                     {title}
                 </td>
                 <td>
-                    {account}
+                    {department}
                 </td>
                 <td>
-                    {signedin}
+                    {status}
+                </td>
+                <td>
+                    {salary}
+                </td>
+                <td>
+                    {leave}
+                </td>
+                <td>
+                    {account}
                 </td>
         </>
     )
