@@ -1,9 +1,20 @@
-function Employee({employeeid,lastname, firstname, middlename, email, title, department, salary, account, phonenumber, status, leave, key}){
+function Employee({employeeID,lastname,firstname,middlename,suffix,gender
+    ,birthday,email,phonenumber,address1,address2,street,barangay,city,province,
+    postal,title,department,dateofhire,active,salary,status,yearsofcontract,wfh,
+    leave,emergencyName,emergencyStreet,emergencyBarangay,emergencyCity,emergencyProvince,
+    emergencyPostal,emergencyCell,emergencyRelationship,account,updateemployee}){
+    
+    const testClick = () => {
+        alert("Hello")
+    }
+    
     return(
         <>
-                <td>
-                    {employeeid}
-                </td>
+            <tr className="text-center" hover style={{cursor:'pointer'}} onClick={()=>updateemployee(employeeID,lastname,firstname,middlename,suffix,gender
+        ,birthday,email,phonenumber,address1,address2,street,barangay,city,province,
+        postal,title,department,dateofhire,active,salary,status,yearsofcontract,wfh,
+        leave,emergencyName,emergencyStreet,emergencyBarangay,emergencyCity,emergencyProvince,
+        emergencyPostal,emergencyCell,emergencyRelationship,account,updateemployee)}>
                 <td>
                     {lastname}
                 </td>
@@ -37,6 +48,7 @@ function Employee({employeeid,lastname, firstname, middlename, email, title, dep
                 <td>
                     {account}
                 </td>
+            </tr>
         </>
     )
 }
