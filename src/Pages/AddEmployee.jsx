@@ -123,7 +123,7 @@ function AddEmployee(){
 
     return(
         <>
-        <h1 className="text-center mb-5 fw-bold">ADD EMPLOYEE</h1>
+        <h1 className="text-center pb-4 fw-bold">ADD EMPLOYEE</h1>
         <hr />
         {/* Form */}
             <div className="container">
@@ -322,7 +322,7 @@ function AddEmployee(){
                     </div>
 
                     <div className="col-sm-2">
-                        <label htmlFor="postal" className="form-label fw-medium">Postal Code</label>
+                        <label htmlFor="postal" className="form-label fw-medium">Zip Code</label>
                         <input type="number" id="postal" className="form-control"
                         onChange={
                             (e)=>setEmployee({
@@ -625,7 +625,7 @@ function AddEmployee(){
                     Barangay: {`${employee.barangay}`} <br />
                     City: {`${employee.city}`} <br />
                     Province: {`${employee.province}`} <br />
-                    Postal: {`${employee.postal}`} <br />
+                    Zip Code: {`${employee.postal}`} <br />
                 </p>
 
                 <p>
