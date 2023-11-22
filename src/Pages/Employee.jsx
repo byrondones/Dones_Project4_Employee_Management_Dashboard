@@ -3,11 +3,6 @@ function Employee({employeeID,lastname,firstname,middlename,suffix,gender
     postal,title,department,dateofhire,active,salary,status,yearsofcontract,wfh,
     leave,emergencyName,emergencyStreet,emergencyBarangay,emergencyCity,emergencyProvince,
     emergencyPostal,emergencyCell,emergencyRelationship,account,updateemployee}){
-    
-    const testClick = () => {
-        alert("Hello")
-    }
-    
     return(
         <>
             <tr className="text-center" hover style={{cursor:'pointer'}} onClick={()=>updateemployee(employeeID,lastname,firstname,middlename,suffix,gender
