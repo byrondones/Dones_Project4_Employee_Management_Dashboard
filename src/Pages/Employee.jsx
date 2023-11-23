@@ -41,7 +41,7 @@ function Employee({employeeID,lastname,firstname,middlename,suffix,gender
                     {leave}
                 </td>
                 <td>
-                    {account}
+                    {active}
                 </td>
             </tr>
         </>
