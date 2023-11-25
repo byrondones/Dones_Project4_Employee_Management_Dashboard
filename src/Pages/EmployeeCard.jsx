@@ -1,4 +1,4 @@
-function EmployeeCard({employee}){
+function EmployeeCard(employee){
     return(
         <>
                 <div className="container-fluid">
@@ -36,7 +36,7 @@ function EmployeeCard({employee}){
                                 </p>
                             </div>
                         </div>
-
+{/* 
                         <div className="col-sm-3">
                             <h4 className='fw-bold'>Address</h4>
                             <div className="m-3">
@@ -119,7 +119,7 @@ function EmployeeCard({employee}){
                                     Address: <b>{`${employee.emergencyStreet}, ${employee.emergencyBarangay}, ${employee.emergencyCity}, ${employee.emergencyProvince}, ${employee.postal}`}</b>
                                 </p>
                             </div>
-                        </div>
+                        </div> */}
                     </div>   
                 </div>
 

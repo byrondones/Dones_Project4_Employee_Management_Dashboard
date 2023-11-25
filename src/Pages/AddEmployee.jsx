@@ -6,8 +6,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
 function AddEmployee(){
-    const [EmployeeList, setEmployeeList] = useState([]);
-    const [show, setShow] = useState(false);
+    const [employeeList, setEmployeeList] = useState([]);
     const [employee, setEmployee] = useState({
         lastname: '',
         firstname: '',
@@ -45,17 +44,11 @@ function AddEmployee(){
         emergencyRelationship: ''
     });
 
+    const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
 
     const SeeEmployee = () => {
-        if(employee.lastname === ''||employee.firstname === ''||employee.middlename === ''||
-        employee.gender === ''||employee.birthday === ''||employee.email === ''||employee.phonenumber === ''||
-        employee.address1 === ''||employee.street === ''||employee.barangay === ''||employee.city === ''||
-        employee.city === ''||employee.province === ''||employee.postal === ''||employee.title === ''||employee.department === ''||
-        employee.dateofhire === ''||employee.active === ''||employee.salary === ''||employee.status === ''||employee.yearsofcontract === ''||
-        employee.wfh === ''||employee.emergencyName === ''||employee.emergencyStreet === ''||employee.emergencyBarangay === ''||employee.emergencyCity === ''||
-        employee.emergencyProvince === ''||employee.emergencyPostal === ''||employee.emergencyEmail === ''||employee.emergencyCell === ''||
-        employee.emergencyRelationship === ''||employee.role ==='')
+        if(employee.lastname === '')
         {
             alert("Missing fields!");
         }else{
@@ -71,7 +64,7 @@ function AddEmployee(){
             ]
         );
 
-        addDoc(collection(db, 'employeerecord'), employee);
+        addDoc(collection(db, 'employeerecords'), employee);
             setEmployee({
                 lastname: '',
                 firstname: '',
@@ -106,7 +99,7 @@ function AddEmployee(){
                 emergencyPostal: '',
                 emergencyEmail: '',
                 emergencyCell: '',
-                emergencyRelationship: ''
+                emergencyRelationship: '',
             })
 
     setShow(false)
@@ -435,9 +428,9 @@ function AddEmployee(){
                                 onChange={
                                     (e)=>setEmployee({
                                         ...employee,
-                                        status: e.target.value,
+                                        eStatus: e.target.value,
                                     })}
-                                value={employee.status}
+                                value={employee.eStatus}
                                 >
                                     <option selected></option>
                                     <option value="Full Time">Full Time</option>
@@ -505,7 +498,7 @@ function AddEmployee(){
                     </div>
 
                     <div className="col-sm-5">
-                        <label htmlFor="emergencyCell" className="form-label fw-medium">Cell Phone Number</label>
+                        <label htmlFor="emergencyCell" className="form-label fw-medium">Cellphone Number</label>
                         <input type="text" id="emergencyCell" className="form-control"
                         onChange={
                             (e)=>setEmployee({

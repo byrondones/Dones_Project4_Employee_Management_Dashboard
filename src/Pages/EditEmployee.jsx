@@ -1,5 +1,42 @@
 
-function EditEmployee({employee,setemployee,handleEmployeeUpdate}){
+function EditEmployee(){
+    const [employeeList, setEmployeeList] = useState([]);
+    const [employee, setEmployee] = useState({
+        lastname: '',
+        firstname: '',
+        middlename: '',
+        suffix: '',
+        gender: '',
+        birthday: '',
+        email: '',
+        phonenumber: '',
+        address1: '',
+        address2: '',
+        street: '',
+        barangay: '',
+        city: '',
+        province: '',
+        postal: '',
+        role: '',
+        title: '',
+        department: '',
+        dateofhire: '',
+        active: '',
+        salary: '',
+        status: '',
+        yearsofcontract: '',
+        wfh: '',
+        leave:'',
+        emergencyName: '',
+        emergencyStreet: '',
+        emergencyBarangay: '',
+        emergencyCity: '',
+        emergencyProvince: '',
+        emergencyPostal: '',
+        emergencyEmail: '',
+        emergencyCell: '',
+        emergencyRelationship: '',
+    });
     return(
         <>
             <div className="container">
@@ -479,7 +516,7 @@ function EditEmployee({employee,setemployee,handleEmployeeUpdate}){
                         />
                     </div>
                 </div>
-                <button className="mt-5 btn btn-dark d-block col-sm-10 mx-auto" onClick={handleEmployeeUpdate}>Submit</button>
+                <button className="mt-5 btn btn-dark d-block col-sm-10 mx-auto" onClick={()=>{handleEmployeeUpdate()}}>Submit</button>
             </div>
         </>
     )
