@@ -86,6 +86,9 @@ function EmployeeCard({employee}){
                                     Status: <b>{`${employee.status}`}</b>
                                 </p>
                                 <p>
+                                    Role: <b>{`${employee.role}`}</b>
+                                </p>
+                                <p>
                                     Years of Contract: <b>{`${employee.yearsofcontract}`}</b>
                                 </p>
                                 <p>
@@ -105,6 +108,9 @@ function EmployeeCard({employee}){
                                 </p>
                                 <p>
                                     Cell Number: <b>{`${employee.emergencyCell}`}</b>
+                                </p>
+                                <p>
+                                    Email: <b>{`${employee.emergencyEmail}`}</b>
                                 </p>
                                 <p>
                                     Relationship: <b>{`${employee.emergencyRelationship}`}</b>

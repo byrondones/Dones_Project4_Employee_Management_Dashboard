@@ -2,14 +2,14 @@ function Employee({employeeID,lastname,firstname,middlename,suffix,gender
     ,birthday,email,phonenumber,address1,address2,street,barangay,city,province,
     postal,title,department,dateofhire,active,salary,status,yearsofcontract,wfh,
     leave,emergencyName,emergencyStreet,emergencyBarangay,emergencyCity,emergencyProvince,
-    emergencyPostal,emergencyCell,emergencyRelationship,account,updateemployee}){
+    emergencyPostal,emergencyCell,emergencyRelationship,account,updateemployee,role,emergencyEmail}){
     return(
         <>
             <tr className="text-center" hover style={{cursor:'pointer'}} onClick={()=>updateemployee(employeeID,lastname,firstname,middlename,suffix,gender
         ,birthday,email,phonenumber,address1,address2,street,barangay,city,province,
         postal,title,department,dateofhire,active,salary,status,yearsofcontract,wfh,
         leave,emergencyName,emergencyStreet,emergencyBarangay,emergencyCity,emergencyProvince,
-        emergencyPostal,emergencyCell,emergencyRelationship,account,updateemployee)}>
+        emergencyPostal,emergencyCell,emergencyRelationship,account,updateemployee,role,emergencyEmail)}>
                 <td>
                     {lastname}
                 </td>

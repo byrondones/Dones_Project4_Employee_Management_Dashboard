@@ -4,13 +4,10 @@ import firebaseApp from "../firebaseConfig";
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { useToast } from '@chakra-ui/react'
 
 function AddEmployee(){
-    const toast = useToast();
-
+    const [EmployeeList, setEmployeeList] = useState([]);
     const [show, setShow] = useState(false);
-    const [employeeList, setEmployeeList] = useState([]);
     const [employee, setEmployee] = useState({
         lastname: '',
         firstname: '',
@@ -49,26 +46,24 @@ function AddEmployee(){
     });
 
     const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
 
     const SeeEmployee = () => {
-        if(employee.lastname === ''||employee.firstname === ''||employee.middlename === ''||employee.suffix === ''||
+        if(employee.lastname === ''||employee.firstname === ''||employee.middlename === ''||
         employee.gender === ''||employee.birthday === ''||employee.email === ''||employee.phonenumber === ''||
         employee.address1 === ''||employee.street === ''||employee.barangay === ''||employee.city === ''||
         employee.city === ''||employee.province === ''||employee.postal === ''||employee.title === ''||employee.department === ''||
         employee.dateofhire === ''||employee.active === ''||employee.salary === ''||employee.status === ''||employee.yearsofcontract === ''||
         employee.wfh === ''||employee.emergencyName === ''||employee.emergencyStreet === ''||employee.emergencyBarangay === ''||employee.emergencyCity === ''||
         employee.emergencyProvince === ''||employee.emergencyPostal === ''||employee.emergencyEmail === ''||employee.emergencyCell === ''||
-        employee.emergencyRelationship === ''||employee.employeeID ==='')
+        employee.emergencyRelationship === ''||employee.role ==='')
         {
             alert("Missing fields!");
         }else{
-
+            setShow(true);
         }
     }
 
-    const AddEmployeeInfo = ()=> {
-
+    const AddEmployeeInfo = () => {
         const db = getFirestore(firebaseApp);
         setEmployeeList(
             employeeList => [
@@ -93,7 +88,7 @@ function AddEmployee(){
                 city: '',
                 province: '',
                 postal: '',
-                employeeID: '',
+                role: '',
                 title: '',
                 department: '',
                 dateofhire: '',
@@ -112,14 +107,10 @@ function AddEmployee(){
                 emergencyEmail: '',
                 emergencyCell: '',
                 emergencyRelationship: ''
-            });
+            })
 
-    handleClose()
+    setShow(false)
     }
-
-    const testSubject = () => {
-        alert("Hello World!");
-    };
 
     return(
         <>
@@ -338,15 +329,19 @@ function AddEmployee(){
                     <h3 className="mb-3 mt-5">Employment Information</h3>
                     <div className="col-sm-1"></div>
                             <div className="col-sm-2">
-                                <label htmlFor="employeeID" className="form-label fw-medium">Employee ID</label>
-                                <input type="number" id="employeeID" className="form-control"
-                        onChange={
-                            (e)=>setEmployee({
-                                ...employee,
-                                employeeID: e.target.value,
-                            })}
-                        value={employee.employeeID}
-                                />
+                            <label htmlFor="role" className="form-label fw-medium">Employee Role</label>
+                                <select className="form-select" id="role"
+                                onChange={
+                                    (e)=>setEmployee({
+                                        ...employee,
+                                        role: e.target.value,
+                                    })}
+                                value={employee.role}
+                                >
+                                    <option selected></option>
+                                    <option value="Staff">Staff</option>
+                                    <option value="Admin">Admin</option>
+                                </select>
                             </div>
 
                             <div className="col-sm-2">
@@ -657,14 +652,7 @@ function AddEmployee(){
                     Close
                 </Button>
 
-                <Button variant="primary" onClick={()=>{AddEmployeeInfo();toast({
-                    title: 'Employee Created',
-                    description: "Employee added to records!",
-                    status: 'success',
-                    duration: 5000,
-                    position: 'top',
-                    isClosable: true,
-                })}}>
+                <Button variant="success" onClick={AddEmployeeInfo}>
                     Save Changes
                 </Button>
 
