@@ -1,4 +1,4 @@
-function EmployeeCard(employee){
+function EmployeeCard({lastname}){
     return(
         <>
                 <div className="container-fluid">
@@ -7,26 +7,26 @@ function EmployeeCard(employee){
                             <h4 className='fw-bold'>Personal Information</h4>
                             <div className="m-3">
                             <p>
-                                Last Name: <b>{`${employee.lastname}`}</b>
+                                Last Name: <b>{`${lastname}`}</b>
+                            </p>
+                            {/* <p>
+                                First Name: <b>{`${employees.firstname}`}</b>
                             </p>
                             <p>
-                                First Name: <b>{`${employee.firstname}`}</b>
+                                Middle Name: <b>{`${employees.middlename}`}</b>
                             </p>
                             <p>
-                                Middle Name: <b>{`${employee.middlename}`}</b>
+                                Suffix: <b>{`${employees.suffix}`}</b>
                             </p>
                             <p>
-                                Suffix: <b>{`${employee.suffix}`}</b>
+                                Gender: <b>{`${employees.gender}`}</b>
                             </p>
                             <p>
-                                Gender: <b>{`${employee.gender}`}</b>
-                            </p>
-                            <p>
-                                Birthday: <b>{`${employee.birthday}`}</b>
-                            </p>
+                                Birthday: <b>{`${employees.birthday}`}</b>
+                            </p> */}
                         </div>
                             
-                        <h4 className='pt-3 fw-bold'>Contact</h4>
+                        {/* <h4 className='pt-3 fw-bold'>Contact</h4>
                             <div className="m-3">
                                 <p>
                                     Email: <b>{`${employee.email}`}</b>
@@ -34,7 +34,7 @@ function EmployeeCard(employee){
                                 <p>
                                     Cellphone: <b>{`${employee.phonenumber}`}</b>
                                 </p>
-                            </div>
+                            </div> */}
                         </div>
 {/* 
                         <div className="col-sm-3">

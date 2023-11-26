@@ -1,7 +1,10 @@
-function Employee({updateemployee,employeeID,lastname, firstname, middlename, phonenumber, email, title, department, eStatus, salary, leave, active}){
+function Employee({updateemployee,employeeID,lastname, firstname, middlename, phonenumber, email, title, department, eStatus, salary, leave, active,
+suffix, gender, birthday}){
     return(
         <>
-            <tr className="text-center" hover style={{cursor:'pointer'}} onClick={()=>updateemployee(employeeID,lastname, firstname, middlename, phonenumber, email, title, department, eStatus, salary, leave, active)}>
+            <tr className="text-center" hover style={{cursor:'pointer'}} onClick={()=>updateemployee(
+                updateemployee,employeeID,lastname, firstname, middlename, phonenumber, email, title, department, eStatus, salary, leave, active,
+                suffix, gender,birthday)}>
                 <td>
                     {lastname}
                 </td>

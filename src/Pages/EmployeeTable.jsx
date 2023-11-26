@@ -13,6 +13,7 @@ import EditEmployee from "./EditEmployee";
 function EmployeeTable({employee, employeeList, setEmployee, setEmployeeList}){
     const [show, setShow] = useState(false);
     
+
     useEffect(()=>{
         const db = getFirestore(firebaseApp);
         try {
@@ -33,7 +34,9 @@ function EmployeeTable({employee, employeeList, setEmployee, setEmployeeList}){
         }
     },[])
 
-    const updateemployee = (employeeID,lastname) => {
+    const handleClose = ()=> {setShow(false); setShowInput(false)};
+
+    const updateemployee = (employeeID,lastname,employee) => {
         setShow(true)
 
         setEmployee({
@@ -41,9 +44,6 @@ function EmployeeTable({employee, employeeList, setEmployee, setEmployeeList}){
             lastname: lastname,
         })
     }
-
-    // const handleClose = ()=> {setShow(false); setShowInput(false)};
-    const handleClose = ()=> {setShow(false)};
 
     return(
         <>
@@ -68,26 +68,16 @@ function EmployeeTable({employee, employeeList, setEmployee, setEmployeeList}){
                 </thead>
 
                 <tbody>
-                {
-                            employeeList.map((employeeRecord) => (
-                                <Employee
-                                employee={employeeRecord.id}
-                                lastname={employeeRecord.lastname}
-                                firstname={employeeRecord.firstname}
-                                middlename={employeeRecord.middlename}
-                                phonenumber={employeeRecord.phonenumber}
-                                email={employeeRecord.email}
-                                title={employeeRecord.title}
-                                department={employeeRecord.department}
-                                eStatus={employeeRecord.eStatus}
-                                salary={employeeRecord.salary}
-                                leave={employeeRecord.leave}
-                                active={employeeRecord.active}
+                    {       
+                        employeeList.map((employeeRecord) => (
+                            <Employee
+                            employee={employeeRecord.id}
+                            lastname={employeeRecord.lastname}
 
-                                updateemployee={updateemployee}
-                                />
-                            ))
-                        }
+                            updateemployee={updateemployee}
+                            />
+                        ))
+                    }
                 </tbody>
             </Table>
                 </div>
@@ -125,9 +115,9 @@ function EmployeeTable({employee, employeeList, setEmployee, setEmployeeList}){
                 } */}
 
                 <EmployeeCard
-                    employee={employee}
+                employee={employee}
                 />
-                
+
             </Modal.Body> 
         <Modal.Footer>
 {/* 

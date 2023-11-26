@@ -6,44 +6,6 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
 function AddEmployee(){
-    const [employeeList, setEmployeeList] = useState([]);
-    const [employee, setEmployee] = useState({
-        lastname: '',
-        firstname: '',
-        middlename: '',
-        suffix: '',
-        gender: '',
-        birthday: '',
-        email: '',
-        phonenumber: '',
-        address1: '',
-        address2: '',
-        street: '',
-        barangay: '',
-        city: '',
-        province: '',
-        postal: '',
-        employeeID: '',
-        title: '',
-        department: '',
-        dateofhire: '',
-        active: '',
-        salary: '',
-        status: '',
-        yearsofcontract: '',
-        wfh: '',
-        leave:'',
-        emergencyName: '',
-        emergencyStreet: '',
-        emergencyBarangay: '',
-        emergencyCity: '',
-        emergencyProvince: '',
-        emergencyPostal: '',
-        emergencyEmail: '',
-        emergencyCell: '',
-        emergencyRelationship: ''
-    });
-
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
 
@@ -306,14 +268,14 @@ function AddEmployee(){
                     </div>
 
                     <div className="col-sm-2">
-                        <label htmlFor="postal" className="form-label fw-medium">Zip Code</label>
-                        <input type="number" id="postal" className="form-control"
+                        <label htmlFor="zipcode" className="form-label fw-medium">Zip Code</label>
+                        <input type="number" id="zipcode" className="form-control"
                         onChange={
                             (e)=>setEmployee({
                                 ...employee,
-                                postal: e.target.value,
+                                zipcode: e.target.value,
                             })}
-                        value={employee.postal}
+                        value={employee.zipcode}
                         />
                     </div>
                 </div>
@@ -561,14 +523,14 @@ function AddEmployee(){
                     </div>
 
                     <div className="col-sm-2">
-                        <label htmlFor="emergencyPostal" className="form-label fw-medium">Postal Code</label>
-                        <input type="text" id="emergencyPostal" className="form-control"
+                        <label htmlFor="emergencyZipcode" className="form-label fw-medium">Postal Code</label>
+                        <input type="text" id="emergencyZipcode" className="form-control"
                         onChange={
                             (e)=>setEmployee({
                                 ...employee,
-                                emergencyPostal: e.target.value,
+                                emergencyZipcode: e.target.value,
                             })}
-                        value={employee.emergencyPostal}
+                        value={employee.emergencyZipcode}
                         />
                     </div>
                 </div>
