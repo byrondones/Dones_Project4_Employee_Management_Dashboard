@@ -10,9 +10,9 @@ import Employee from "./Employee";
 import EmployeeCard from "./EmployeeCard";
 import EditEmployee from "./EditEmployee";
 
-function EmployeeTable({employee, employeeList, setEmployee, setEmployeeList}){
+function EmployeeTable({employee, employeeList, setEmployee, setEmployeeList, employeeRecord}){
     const [show, setShow] = useState(false);
-    
+
 
     useEffect(()=>{
         const db = getFirestore(firebaseApp);
@@ -36,7 +36,7 @@ function EmployeeTable({employee, employeeList, setEmployee, setEmployeeList}){
 
     const handleClose = ()=> {setShow(false); setShowInput(false)};
 
-    const updateemployee = (employeeID,lastname,employee) => {
+    const updateemployee = (employeeID,lastname) => {
         setShow(true)
 
         setEmployee({
@@ -117,7 +117,6 @@ function EmployeeTable({employee, employeeList, setEmployee, setEmployeeList}){
                 <EmployeeCard
                 employee={employee}
                 />
-
             </Modal.Body> 
         <Modal.Footer>
 {/* 
