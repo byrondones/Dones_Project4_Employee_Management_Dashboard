@@ -179,6 +179,11 @@ function EmployeeTable({employee,employeeList,setEmployee,setEmployeeList}){
         )
     }
 
+    const changeBtn = () => {
+        setShow(true);
+        setShowInput(false)
+    }
+
     return(
         <>
             <div className="container-fluid">
@@ -289,14 +294,14 @@ function EmployeeTable({employee,employeeList,setEmployee,setEmployeeList}){
                     ?
                     (
 
-                    <Button variant="warning" onClick={editemployee}>
-                        Update
+                    <Button variant="warning" onClick={changeBtn}>
+                        Back
                     </Button>
                     )
                     :
                     (
                     <Button variant="warning" onClick={editemployee}>
-                        Update
+                        Update 
                     </Button>
                     )
                 }
