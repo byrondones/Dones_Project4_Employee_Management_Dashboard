@@ -1,4 +1,4 @@
-function EmployeeCard({lastname}){
+function EmployeeCard({employee}){
     return(
         <>
                 <div className="container-fluid">
@@ -7,26 +7,26 @@ function EmployeeCard({lastname}){
                             <h4 className='fw-bold'>Personal Information</h4>
                             <div className="m-3">
                             <p>
-                                Last Name: <b>{`${lastname}`}</b>
-                            </p>
-                            {/* <p>
-                                First Name: <b>{`${employees.firstname}`}</b>
+                                Last Name: <b>{`${employee.lastname}`}</b>
                             </p>
                             <p>
-                                Middle Name: <b>{`${employees.middlename}`}</b>
+                                First Name: <b>{`${employee.firstname}`}</b>
                             </p>
                             <p>
-                                Suffix: <b>{`${employees.suffix}`}</b>
+                                Middle Name: <b>{`${employee.middlename}`}</b>
                             </p>
                             <p>
-                                Gender: <b>{`${employees.gender}`}</b>
+                                Suffix: <b>{`${employee.suffix}`}</b>
                             </p>
                             <p>
-                                Birthday: <b>{`${employees.birthday}`}</b>
-                            </p> */}
+                                Gender: <b>{`${employee.gender}`}</b>
+                            </p>
+                            <p>
+                                Birthday: <b>{`${employee.birthday}`}</b>
+                            </p>
                         </div>
                             
-                        {/* <h4 className='pt-3 fw-bold'>Contact</h4>
+                        <h4 className='pt-3 fw-bold'>Contact</h4>
                             <div className="m-3">
                                 <p>
                                     Email: <b>{`${employee.email}`}</b>
@@ -34,9 +34,9 @@ function EmployeeCard({lastname}){
                                 <p>
                                     Cellphone: <b>{`${employee.phonenumber}`}</b>
                                 </p>
-                            </div> */}
+                            </div>
                         </div>
-{/* 
+
                         <div className="col-sm-3">
                             <h4 className='fw-bold'>Address</h4>
                             <div className="m-3">
@@ -59,7 +59,7 @@ function EmployeeCard({lastname}){
                                     Province: <b>{`${employee.province}`}</b>
                                 </p>
                                 <p>
-                                    Zip Code: <b>{`${employee.postal}`}</b>
+                                    Zip Code: <b>{`${employee.zipcode}`}</b>
                                 </p>
                             </div>
                         </div>
@@ -83,7 +83,7 @@ function EmployeeCard({lastname}){
                                     Salary: <b>{`${employee.salary}`}</b>
                                 </p>
                                 <p>
-                                    Status: <b>{`${employee.status}`}</b>
+                                    Status: <b>{`${employee.eStatus}`}</b>
                                 </p>
                                 <p>
                                     Role: <b>{`${employee.role}`}</b>
@@ -116,10 +116,10 @@ function EmployeeCard({lastname}){
                                     Relationship: <b>{`${employee.emergencyRelationship}`}</b>
                                 </p>
                                 <p>
-                                    Address: <b>{`${employee.emergencyStreet}, ${employee.emergencyBarangay}, ${employee.emergencyCity}, ${employee.emergencyProvince}, ${employee.postal}`}</b>
+                                    Address: <b>{`${employee.emergencyStreet}, ${employee.emergencyBarangay}, ${employee.emergencyCity}, ${employee.emergencyProvince}, ${employee.zipcode}`}</b>
                                 </p>
                             </div>
-                        </div> */}
+                        </div>
                     </div>   
                 </div>
 

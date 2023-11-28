@@ -24,7 +24,7 @@ const updateemployee = (employeeID,emergencyCell) => {
             dateofhire: dateofhire,
             active: active,
             salary: salary,
-            e_status: e_status,
+            eStatus: eStatus,
             yearsofcontract: yearsofcontract,
             wfh: wfh,
             leave: leave,

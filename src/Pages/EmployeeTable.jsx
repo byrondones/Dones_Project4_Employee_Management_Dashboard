@@ -10,9 +10,9 @@ import Employee from "./Employee";
 import EmployeeCard from "./EmployeeCard";
 import EditEmployee from "./EditEmployee";
 
-function EmployeeTable({employee, employeeList, setEmployee, setEmployeeList, employeeRecord}){
+function EmployeeTable({employee,employeeList,setEmployee,setEmployeeList}){
     const [show, setShow] = useState(false);
-
+    const [showInput, setShowInput] = useState(false);
 
     useEffect(()=>{
         const db = getFirestore(firebaseApp);
@@ -36,13 +36,147 @@ function EmployeeTable({employee, employeeList, setEmployee, setEmployeeList, em
 
     const handleClose = ()=> {setShow(false); setShowInput(false)};
 
-    const updateemployee = (employeeID,lastname) => {
+    const updateemployee = (employeeID, lastname, firstname, middlename, suffix, gender, birthday, email, phonenumber, address1, address2, street, barangay, city,
+        province, zipcode, title, department, dateofhire, active, salary, eStatus, role, yearsofcontract, wfh, leave, emergencyName,
+        emergencyCell, emergencyEmail, emergencyRelationship, emergencyStreet, emergencyBarangay, emergencyCity, emergencyProvince,
+        emergencyZipcode) => {
+
         setShow(true)
 
         setEmployee({
             employeeID: employeeID,
             lastname: lastname,
+            firstname: firstname,
+            middlename: middlename,
+            suffix: suffix,
+            gender: gender,
+            birthday: birthday,
+            email: email,
+            phonenumber: phonenumber,
+            address1: address1,
+            address2: address2,
+            street: street,
+            barangay: barangay,
+            city: city,
+            province: province,
+            zipcode: zipcode,
+            title: title,
+            department: department,
+            dateofhire: dateofhire,
+            active: active,
+            salary: salary,
+            eStatus: eStatus,
+            role: role,
+            yearsofcontract: yearsofcontract,
+            wfh: wfh,
+            leave: leave,
+            emergencyName: emergencyName,
+            emergencyEmail: emergencyEmail,
+            emergencyCell: emergencyCell,
+            emergencyRelationship: emergencyRelationship,
+            emergencyStreet: emergencyStreet,
+            emergencyBarangay: emergencyBarangay,
+            emergencyCity: emergencyCity,
+            emergencyProvince: emergencyProvince,
+            emergencyZipcode: emergencyZipcode,
         })
+    }
+
+    const editemployee = (employee,setEmployee) => {
+        setShowInput(true)
+    }
+
+    const handleEmployeeUpdate = () => {
+        // Initialize Cloud Firestore and get a reference to the service
+    const db = getFirestore(firebaseApp);
+
+    const employeeRef = doc(db, "employeerecords", employee.employeeID);
+    
+        updateDoc(employeeRef, {
+            lastname: employee.lastname,
+            firstname: employee.firstname,
+            middlename: employee.middlename,
+            suffix: employee.suffix,
+            gender: employee.gender,
+            birthday: employee.birthday,
+            email: employee.email,
+            phonenumber: employee.phonenumber,
+            address1: employee.address1,
+            address2: employee.address2,
+            street: employee.street,
+            barangay: employee.barangay,
+            city: employee.city,
+            province: employee.province,
+            zipcode: employee.zipcode,
+            title: employee.title,
+            department: employee.department,
+            dateofhire: employee.dateofhire,
+            active: employee.active,
+            salary: employee.salary,
+            eStatus: employee.eStatus,
+            role: employee.role,
+            yearsofcontract: employee.yearsofcontract,
+            wfh: employee.wfh,
+            leave: employee.leave,
+            emergencyName: employee.emergencyName,
+            emergencyEmail: employee.emergencyEmail,
+            emergencyCell: employee.emergencyCell,
+            emergencyRelationship: employee.emergencyRelationship,
+            emergencyStreet: employee.emergencyStreet,
+            emergencyBarangay: employee.emergencyBarangay,
+            emergencyCity: employee.emergencyCity,
+            emergencyProvince: employee.emergencyProvince,
+            emergencyZipcode: employee.emergencyZipcode,
+        });
+
+        setShow(false)
+
+        setEmployee({
+        lastname: '',
+        firstname: '',
+        middlename: '',
+        suffix: '',
+        gender: '',
+        birthday: '',
+        email: '',
+        phonenumber: '',
+        address1: '',
+        address2: '',
+        street: '',
+        barangay: '',
+        city: '',
+        province: '',
+        zipcode: '',
+        role: '',
+        title: '',
+        department: '',
+        dateofhire: '',
+        active: '',
+        salary: '',
+        eStatus: '',
+        yearsofcontract: '',
+        wfh: '',
+        leave:'',
+        emergencyName: '',
+        emergencyStreet: '',
+        emergencyBarangay: '',
+        emergencyCity: '',
+        emergencyProvince: '',
+        emergencyZipcode: '',
+        emergencyEmail: '',
+        emergencyCell: '',
+        emergencyRelationship: '',
+        });
+    }
+
+    const deleteEmployee = () => {
+        // Initialize Cloud Firestore and get a reference to the service
+        const db = getFirestore(firebaseApp);
+
+        confirm(`Are you sure you want to delete this employee?`).then(
+            deleteDoc(doc(db, "employeerecords", employee.employeeID)),
+            setShow(false)
+        )
     }
 
     return(
@@ -67,12 +201,45 @@ function EmployeeTable({employee, employeeList, setEmployee, setEmployeeList, em
                     </tr>
                 </thead>
 
-                <tbody>
+                <tbody hover="true">
                     {       
                         employeeList.map((employeeRecord) => (
                             <Employee
-                            employee={employeeRecord.id}
+                            employeeID={employeeRecord.employee_id}
                             lastname={employeeRecord.lastname}
+                            firstname={employeeRecord.firstname}
+                            middlename={employeeRecord.middlename}
+                            phonenumber={employeeRecord.phonenumber}
+                            email={employeeRecord.email}
+                            title={employeeRecord.title}
+                            department={employeeRecord.department}
+                            eStatus={employeeRecord.eStatus}
+                            salary={employeeRecord.salary}
+                            leave={employeeRecord.leave}
+                            active={employeeRecord.active}
+                            gender={employeeRecord.gender}
+                            suffix={employeeRecord.suffix}
+                            birthday={employeeRecord.birthday}
+                            address1={employeeRecord.address1}
+                            address2={employeeRecord.address2}
+                            street={employeeRecord.street}
+                            barangay={employeeRecord.barangay}
+                            city={employeeRecord.city}
+                            province={employeeRecord.province}
+                            zipcode={employeeRecord.zipcode}
+                            dateofhire={employeeRecord.dateofhire}
+                            yearsofcontract={employeeRecord.yearsofcontract}
+                            wfh={employeeRecord.wfh}
+                            role={employeeRecord.role}
+                            emergencyName={employeeRecord.emergencyName}
+                            emergencyCell={employeeRecord.emergencyCell}
+                            emergencyEmail={employeeRecord.emergencyEmail}
+                            emergencyStreet={employeeRecord.emergencyStreet}
+                            emergencyBarangay={employeeRecord.emergencyBarangay}
+                            emergencyRelationship={employeeRecord.emergencyRelationship}
+                            emergencyCity={employeeRecord.emergencyCity}
+                            emergencyProvince={employeeRecord.emergencyProvince}
+                            emergencyZipcode={employeeRecord.emergencyZipcode}
 
                             updateemployee={updateemployee}
                             />
@@ -95,7 +262,7 @@ function EmployeeTable({employee, employeeList, setEmployee, setEmployeeList, em
         <Modal.Title>Employee Card</Modal.Title>
         </Modal.Header>
             <Modal.Body>
-                {/* {
+                {
                     showInput
                     ?
                     (
@@ -103,7 +270,8 @@ function EmployeeTable({employee, employeeList, setEmployee, setEmployeeList, em
                         <EditEmployee
                         employee={employee}
                         setEmployee={setEmployee}
-                        handleEmployeeUpdate={handleEmployeeUpdate()}
+
+                        handleEmployeeUpdate={handleEmployeeUpdate}
                         />
                     )
                     :
@@ -112,21 +280,33 @@ function EmployeeTable({employee, employeeList, setEmployee, setEmployeeList, em
                             employee={employee}
                         />
                     )
-                } */}
-
-                <EmployeeCard
-                employee={employee}
-                />
+                }
             </Modal.Body> 
         <Modal.Footer>
-{/* 
-            <Button variant="warning" onClick={editeemployee}>
+
+        {
+                    showInput
+                    ?
+                    (
+
+                    <Button variant="warning" onClick={editemployee}>
+                        Update
+                    </Button>
+                    )
+                    :
+                    (
+                    <Button variant="warning" onClick={editemployee}>
+                        Update
+                    </Button>
+                    )
+                }
+            {/* <Button variant="warning" onClick={editemployee}>
                 Update
-            </Button>
+            </Button> */}
 
             <Button variant="danger" onClick={deleteEmployee}>
                 Delete
-            </Button> */}
+            </Button>
 
             {/* <Button variant="info" onClick={handleShowInputShow()}>
                 Back

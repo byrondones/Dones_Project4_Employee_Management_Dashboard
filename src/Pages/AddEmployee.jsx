@@ -9,6 +9,44 @@ function AddEmployee(){
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
 
+    const [employeeList, setEmployeeList] = useState([]);
+    const [employee, setEmployee] = useState({
+        lastname: '',
+        firstname: '',
+        middlename: '',
+        suffix: '',
+        gender: '',
+        birthday: '',
+        email: '',
+        phonenumber: '',
+        address1: '',
+        address2: '',
+        street: '',
+        barangay: '',
+        city: '',
+        province: '',
+        zipcode: '',
+        role: '',
+        title: '',
+        department: '',
+        dateofhire: '',
+        active: '',
+        salary: '',
+        eStatus: '',
+        yearsofcontract: '',
+        wfh: '',
+        leave:'',
+        emergencyName: '',
+        emergencyStreet: '',
+        emergencyBarangay: '',
+        emergencyCity: '',
+        emergencyProvince: '',
+        emergencyZipcode: '',
+        emergencyEmail: '',
+        emergencyCell: '',
+        emergencyRelationship: '',
+    });
+
     const SeeEmployee = () => {
         if(employee.lastname === '')
         {
@@ -58,7 +96,7 @@ function AddEmployee(){
                 emergencyBarangay: '',
                 emergencyCity: '',
                 emergencyProvince: '',
-                emergencyPostal: '',
+                emergencyZipcode: '',
                 emergencyEmail: '',
                 emergencyCell: '',
                 emergencyRelationship: '',
@@ -78,7 +116,7 @@ function AddEmployee(){
                         <div className="col-sm-1"></div>
                         <div className="col-sm-3">
                                 <label htmlFor="lastname" className="form-label fw-medium">Last Name</label>
-                                <input type="text" id="lastname" placeholder="Doe" className="form-control"
+                                <input type="text" id="lastname" placeholder="Doe" className="form-control" required
                                 onChange={
                                     (e)=>setEmployee({
                                         ...employee,
@@ -523,7 +561,7 @@ function AddEmployee(){
                     </div>
 
                     <div className="col-sm-2">
-                        <label htmlFor="emergencyZipcode" className="form-label fw-medium">Postal Code</label>
+                        <label htmlFor="emergencyZipcode" className="form-label fw-medium">Zip Code</label>
                         <input type="text" id="emergencyZipcode" className="form-control"
                         onChange={
                             (e)=>setEmployee({
@@ -553,7 +591,10 @@ function AddEmployee(){
             </div>
 
         {/* Modal */}
-        <Modal show={show} onHide={handleClose} centered>
+        <Modal show={show} onHide={handleClose}
+            size='xl'
+            centered='true'
+            scrollable='true'>
             <Modal.Header closeButton>
                 <Modal.Title>Confirm Details</Modal.Title>
             </Modal.Header>
@@ -596,7 +637,7 @@ function AddEmployee(){
                     Full Name: {`${employee.emergencyName} `} <br />
                     Email: {`${employee.emergencyEmail}`} <br />
                     Cellphone: {` ${employee.emergencyCell}`} <br />
-                    Address: {`${employee.emergencyStreet} ${employee.emergencyBarangay} ${employee.emergencyCity}, ${employee.emergencyProvince} ${employee.emergencyPostal}`} <br /> 
+                    Address: {`${employee.emergencyStreet} ${employee.emergencyBarangay} ${employee.emergencyCity}, ${employee.emergencyProvince} ${employee.emergencyZipcode}`} <br /> 
                     Relationship: {`${employee.emergencyRelationship}`} <br />
                 </p>
             </Modal.Body>

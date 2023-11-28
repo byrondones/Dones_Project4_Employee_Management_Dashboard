@@ -1,42 +1,4 @@
-
-function EditEmployee(){
-    const [employeeList, setEmployeeList] = useState([]);
-    const [employee, setEmployee] = useState({
-        lastname: '',
-        firstname: '',
-        middlename: '',
-        suffix: '',
-        gender: '',
-        birthday: '',
-        email: '',
-        phonenumber: '',
-        address1: '',
-        address2: '',
-        street: '',
-        barangay: '',
-        city: '',
-        province: '',
-        postal: '',
-        role: '',
-        title: '',
-        department: '',
-        dateofhire: '',
-        active: '',
-        salary: '',
-        status: '',
-        yearsofcontract: '',
-        wfh: '',
-        leave:'',
-        emergencyName: '',
-        emergencyStreet: '',
-        emergencyBarangay: '',
-        emergencyCity: '',
-        emergencyProvince: '',
-        emergencyPostal: '',
-        emergencyEmail: '',
-        emergencyCell: '',
-        emergencyRelationship: '',
-    });
+function EditEmployee({employee,setEmployee,handleEmployeeUpdate}){
     return(
         <>
             <div className="container">
@@ -47,7 +9,7 @@ function EditEmployee(){
                                 <label htmlFor="lastname" className="form-label fw-medium">Last Name</label>
                                 <input type="text" id="lastname" placeholder="Doe" className="form-control"
                                 onChange={
-                                    (e)=>setemployee({
+                                    (e)=>setEmployee({
                                         ...employee,
                                         lastname: e.target.value,
                                     })}
@@ -59,7 +21,7 @@ function EditEmployee(){
                                 <label htmlFor="firstname" className="form-label fw-medium">First Name</label>
                                 <input type="text" id="firstname" placeholder="John" className="form-control"
                                 onChange={
-                                    (e)=>setemployee({
+                                    (e)=>setEmployee({
                                         ...employee,
                                         firstname: e.target.value,
                                     })}
@@ -71,7 +33,7 @@ function EditEmployee(){
                                 <label htmlFor="middlename" className="form-label fw-medium">Middle Name</label>
                                 <input type="text" id="middlename" placeholder="F" className="form-control"
                                 onChange={
-                                    (e)=>setemployee({
+                                    (e)=>setEmployee({
                                         ...employee,
                                         middlename: e.target.value,
                                     })}
@@ -84,7 +46,7 @@ function EditEmployee(){
                                 <label htmlFor="suffix" className="form-label fw-medium">Suffix</label>
                                 <select className="form-select" id="suffix"
                                 onChange={
-                                    (e)=>setemployee({
+                                    (e)=>setEmployee({
                                         ...employee,
                                         suffix: e.target.value,
                                     })}
@@ -104,7 +66,7 @@ function EditEmployee(){
                         <label htmlFor="gender" className="form-label fw-medium">Gender</label>
                             <select className="form-select" id="gender"
                             onChange={
-                                (e)=>setemployee({
+                                (e)=>setEmployee({
                                     ...employee,
                                     gender: e.target.value,
                                 })}
@@ -121,7 +83,7 @@ function EditEmployee(){
                         <label htmlFor="birthday" className="form-label fw-medium">Birthday</label>
                         <input type="date" id="birthday" className="form-control"
                         onChange={
-                            (e)=>setemployee({
+                            (e)=>setEmployee({
                                 ...employee,
                                 birthday: e.target.value,
                             })}
@@ -134,7 +96,7 @@ function EditEmployee(){
                         <label htmlFor="email" className="form-label fw-medium">Email</label>
                         <input type="email" id="email" placeholder="John@Doe.com" className="form-control"
                         onChange={
-                            (e)=>setemployee({
+                            (e)=>setEmployee({
                                 ...employee,
                                 email: e.target.value,
                             })}
@@ -146,7 +108,7 @@ function EditEmployee(){
                         <label htmlFor="phonenumber" className="form-label fw-medium">Phone Number</label>
                         <input type="number" id="phonenumber" placeholder="+63 123 456 7890" className="form-control"
                         onChange={
-                            (e)=>setemployee({
+                            (e)=>setEmployee({
                                 ...employee,
                                 phonenumber: e.target.value,
                             })}
@@ -163,7 +125,7 @@ function EditEmployee(){
                         <label htmlFor="address1" className="form-label fw-medium">Address Line 1</label>
                         <input type="text" id="address1"  className="form-control"
                         onChange={
-                            (e)=>setemployee({
+                            (e)=>setEmployee({
                                 ...employee,
                                 address1: e.target.value,
                             })}
@@ -175,7 +137,7 @@ function EditEmployee(){
                         <label htmlFor="address2" className="form-label fw-medium">Address Line 2</label>
                         <input type="text" id="address2" className="form-control"
                         onChange={
-                            (e)=>setemployee({
+                            (e)=>setEmployee({
                                 ...employee,
                                 address2: e.target.value,
                             })}
@@ -190,7 +152,7 @@ function EditEmployee(){
                         <label htmlFor="street" className="form-label fw-medium">Street</label>
                         <input type="text" id="street" className="form-control"
                         onChange={
-                            (e)=>setemployee({
+                            (e)=>setEmployee({
                                 ...employee,
                                 street: e.target.value,
                             })}
@@ -202,7 +164,7 @@ function EditEmployee(){
                         <label htmlFor="barangay" className="form-label fw-medium">Barangay</label>
                         <input type="text" id="barangay" className="form-control"
                         onChange={
-                            (e)=>setemployee({
+                            (e)=>setEmployee({
                                 ...employee,
                                 barangay: e.target.value,
                             })}
@@ -214,7 +176,7 @@ function EditEmployee(){
                         <label htmlFor="city" className="form-label fw-medium">City</label>
                         <input type="text" id="city" className="form-control"
                         onChange={
-                            (e)=>setemployee({
+                            (e)=>setEmployee({
                                 ...employee,
                                 city: e.target.value,
                             })}
@@ -226,7 +188,7 @@ function EditEmployee(){
                         <label htmlFor="province" className="form-label fw-medium">Province</label>
                         <input type="text" id="province" className="form-control"
                         onChange={
-                            (e)=>setemployee({
+                            (e)=>setEmployee({
                                 ...employee,
                                 province: e.target.value,
                             })}
@@ -235,14 +197,14 @@ function EditEmployee(){
                     </div>
 
                     <div className="col-sm-2">
-                        <label htmlFor="postal" className="form-label fw-medium">Zip Code</label>
-                        <input type="number" id="postal" className="form-control"
+                        <label htmlFor="zipcode" className="form-label fw-medium">Zip Code</label>
+                        <input type="number" id="zipcode" className="form-control"
                         onChange={
-                            (e)=>setemployee({
+                            (e)=>setEmployee({
                                 ...employee,
-                                postal: e.target.value,
+                                zipcode: e.target.value,
                             })}
-                        value={employee.postal}
+                        value={employee.zipcode}
                         />
                     </div>
                 </div>
@@ -254,7 +216,7 @@ function EditEmployee(){
                             <label htmlFor="role" className="form-label fw-medium">Employee Role</label>
                                 <select className="form-select" id="role"
                                 onChange={
-                                    (e)=>setemployee({
+                                    (e)=>setEmployee({
                                         ...employee,
                                         role: e.target.value,
                                     })}
@@ -270,7 +232,7 @@ function EditEmployee(){
                                 <label htmlFor="title" className="form-label fw-medium">Job Title</label>
                                 <input type="text" id="title" className="form-control"
                         onChange={
-                            (e)=>setemployee({
+                            (e)=>setEmployee({
                                 ...employee,
                                 title: e.target.value,
                             })}
@@ -282,7 +244,7 @@ function EditEmployee(){
                                 <label htmlFor="department" className="form-label fw-medium">Department</label>
                                 <input type="text" id="department" className="form-control"
                         onChange={
-                            (e)=>setemployee({
+                            (e)=>setEmployee({
                                 ...employee,
                                 department: e.target.value,
                             })}
@@ -294,7 +256,7 @@ function EditEmployee(){
                                 <label htmlFor="dateofhire" className="form-label fw-medium">Date of Hire</label>
                                 <input type="date" id="dateofhire" className="form-control"
                         onChange={
-                            (e)=>setemployee({
+                            (e)=>setEmployee({
                                 ...employee,
                                 dateofhire: e.target.value,
                             })}
@@ -305,7 +267,7 @@ function EditEmployee(){
                             <label htmlFor="active" className="form-label fw-medium">Active</label>
                             <select className="form-select" id="active"
                         onChange={
-                            (e)=>setemployee({
+                            (e)=>setEmployee({
                                 ...employee,
                                 active: e.target.value,
                             })}
@@ -324,7 +286,7 @@ function EditEmployee(){
                                 <label htmlFor="salary" className="form-label fw-medium">Salary (₱)</label>
                                 <input type="number" id="salary" className="form-control" 
                         onChange={
-                            (e)=>setemployee({
+                            (e)=>setEmployee({
                                 ...employee,
                                 salary: e.target.value,
                             })}
@@ -336,7 +298,7 @@ function EditEmployee(){
                                 <label htmlFor="salary" className="form-label fw-medium">On Leave</label>
                                 <select className="form-select" id="leave"
                                 onChange={
-                                    (e)=>setemployee({
+                                    (e)=>setEmployee({
                                         ...employee,
                                         leave: e.target.value,
                                     })}
@@ -352,14 +314,14 @@ function EditEmployee(){
                         <div className="row mt-2">
                         <div className="col-sm-1"></div>
                             <div className="col-sm-4">
-                                <label htmlFor="status" className="form-label fw-medium">Employment Status</label>
-                                <select className="form-select" id="status"
+                                <label htmlFor="eStatus" className="form-label fw-medium">Employment Status</label>
+                                <select className="form-select" id="eStatus"
                                 onChange={
-                                    (e)=>setemployee({
+                                    (e)=>setEmployee({
                                         ...employee,
-                                        status: e.target.value,
+                                        eStatus: e.target.value,
                                     })}
-                                value={employee.status}
+                                value={employee.eStatus}
                                 >
                                     <option selected></option>
                                     <option value="Full Time">Full Time</option>
@@ -372,7 +334,7 @@ function EditEmployee(){
                                 <label htmlFor="yearsofcontract" className="form-label fw-medium">Years of Contract</label>
                                 <input type="text" id="yearsofcontract" className="form-control" 
                         onChange={
-                            (e)=>setemployee({
+                            (e)=>setEmployee({
                                 ...employee,
                                 yearsofcontract: e.target.value,
                             })}
@@ -383,7 +345,7 @@ function EditEmployee(){
                             <label htmlFor="Wfh" className="form-label fw-medium">Work From Home</label>
                             <select className="form-select" id="Wfh"
                         onChange={
-                            (e)=>setemployee({
+                            (e)=>setEmployee({
                                 ...employee,
                                 wfh: e.target.value,
                             })}
@@ -403,7 +365,7 @@ function EditEmployee(){
                         <label htmlFor="emergencyName" className="form-label fw-medium">Full Name</label>
                         <input type="text" id="emergencyName" className="form-control"
                         onChange={
-                            (e)=>setemployee({
+                            (e)=>setEmployee({
                                 ...employee,
                                 emergencyName: e.target.value,
                             })}
@@ -418,7 +380,7 @@ function EditEmployee(){
                         <label htmlFor="emergencyEmail" className="form-label fw-medium">Email</label>
                         <input type="email" id="emergencyEmail" className="form-control"
                         onChange={
-                            (e)=>setemployee({
+                            (e)=>setEmployee({
                                 ...employee,
                                 emergencyEmail: e.target.value,
                             })}
@@ -430,7 +392,7 @@ function EditEmployee(){
                         <label htmlFor="emergencyCell" className="form-label fw-medium">Cellphone Number</label>
                         <input type="text" id="emergencyCell" className="form-control"
                         onChange={
-                            (e)=>setemployee({
+                            (e)=>setEmployee({
                                 ...employee,
                                 emergencyCell: e.target.value,
                             })}
@@ -445,7 +407,7 @@ function EditEmployee(){
                         <label htmlFor="emergencyStreet" className="form-label fw-medium">Street</label>
                         <input type="text" id="emergencyStreet" className="form-control"
                         onChange={
-                            (e)=>setemployee({
+                            (e)=>setEmployee({
                                 ...employee,
                                 emergencyStreet: e.target.value,
                             })}
@@ -457,7 +419,7 @@ function EditEmployee(){
                         <label htmlFor="emergencyBarangay" className="form-label fw-medium">Barangay</label>
                         <input type="text" id="emergencyBarangay" className="form-control"
                         onChange={
-                            (e)=>setemployee({
+                            (e)=>setEmployee({
                                 ...employee,
                                 emergencyBarangay: e.target.value,
                             })}
@@ -469,7 +431,7 @@ function EditEmployee(){
                         <label htmlFor="emergencyCity" className="form-label fw-medium">City</label>
                         <input type="text" id="emergencyCity" className="form-control"
                         onChange={
-                            (e)=>setemployee({
+                            (e)=>setEmployee({
                                 ...employee,
                                 emergencyCity: e.target.value,
                             })}
@@ -481,7 +443,7 @@ function EditEmployee(){
                         <label htmlFor="emergencyProvince" className="form-label fw-medium">Province</label>
                         <input type="text" id="emergencyProvince" className="form-control"
                         onChange={
-                            (e)=>setemployee({
+                            (e)=>setEmployee({
                                 ...employee,
                                 emergencyProvince: e.target.value,
                             })}
@@ -490,14 +452,14 @@ function EditEmployee(){
                     </div>
 
                     <div className="col-sm-2">
-                        <label htmlFor="emergencyPostal" className="form-label fw-medium">Postal Code</label>
-                        <input type="text" id="emergencyPostal" className="form-control"
+                        <label htmlFor="emergencyZipcode" className="form-label fw-medium">Zipcode</label>
+                        <input type="text" id="emergencyZipcode" className="form-control"
                         onChange={
-                            (e)=>setemployee({
+                            (e)=>setEmployee({
                                 ...employee,
-                                emergencyPostal: e.target.value,
+                                emergencyZipcode: e.target.value,
                             })}
-                        value={employee.emergencyPostal}
+                        value={employee.emergencyZipcode}
                         />
                     </div>
                 </div>
@@ -508,7 +470,7 @@ function EditEmployee(){
                         <label htmlFor="emergencyRelationship" className="form-label fw-medium">Relationship</label>
                         <input type="text" id="emergencyRelationship" className="form-control"
                         onChange={
-                            (e)=>setemployee({
+                            (e)=>setEmployee({
                                 ...employee,
                                 emergencyRelationship: e.target.value,
                             })}
@@ -516,6 +478,7 @@ function EditEmployee(){
                         />
                     </div>
                 </div>
+
                 <button className="mt-5 btn btn-dark d-block col-sm-10 mx-auto" onClick={()=>{handleEmployeeUpdate()}}>Submit</button>
             </div>
         </>

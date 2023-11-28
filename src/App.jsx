@@ -15,16 +15,38 @@ function App() {
       lastname: '',
       firstname: '',
       middlename: '',
-      phonenumber: '',
+      suffix: '',
+      gender: '',
+      birthday: '',
       email: '',
+      phonenumber: '',
+      address1: '',
+      address2: '',
+      street: '',
+      barangay: '',
+      city: '',
+      province: '',
+      zipcode: '',
+      role: '',
       title: '',
       department: '',
-      eStatus: '',
-      salary: '',
-      leave: '',
+      dateofhire: '',
       active: '',
+      salary: '',
+      eStatus: '',
+      yearsofcontract: '',
+      wfh: '',
+      leave:'',
+      emergencyName: '',
+      emergencyStreet: '',
+      emergencyBarangay: '',
+      emergencyCity: '',
+      emergencyProvince: '',
+      emergencyZipcode: '',
+      emergencyEmail: '',
+      emergencyCell: '',
+      emergencyRelationship: '',
   });
-
 
   return (
     <>
@@ -33,11 +55,11 @@ function App() {
             <Routes>
               <Route path='/' element={<AdminDashboard />}>
                 <Route path='employeelist' element={<EmployeeTable
-                employeeList={employeeList}
-                setEmployeeList={setEmployeeList}
-                employee={employee}
-                setEmployee={setEmployee}
-                />} />
+                  employeeList={employeeList}
+                  employee={employee}
+                  setEmployeeList={setEmployeeList}
+                  setEmployee={setEmployee}
+                  />} />
                 <Route path='addemployee' element={<AddEmployee/>} />
               </Route>
             </Routes>
