@@ -3,13 +3,19 @@ import 'bootstrap/dist/js/bootstrap.js'
 import { ChakraProvider } from '@chakra-ui/react'
 
 import React, { useState, useEffect } from "react";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+
 
 import AdminDashboard from './Pages/AdminDashboard';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import EmployeeTable from './Pages/EmployeeTable';
 import AddEmployee from './Pages/AddEmployee';
+import Login from './Auth/Login';
 
 function App() {
+  const [authenticated, setAuthenticated] = useState(false);
+  const [userProperties, setUserProperties] = useState({});
+
   const [employeeList, setEmployeeList] = useState([]);
   const [employee, setEmployee] = useState({
       lastname: '',
@@ -50,7 +56,6 @@ function App() {
 
   return (
     <>
-      <ChakraProvider>
         <BrowserRouter>
             <Routes>
               <Route path='/' element={<AdminDashboard />}>
@@ -61,10 +66,10 @@ function App() {
                   setEmployee={setEmployee}
                   />} />
                 <Route path='addemployee' element={<AddEmployee/>} />
+                <Route path='login' element={<Login />} />
               </Route>
             </Routes>
           </BrowserRouter>
-      </ChakraProvider>
     </>
   )
 }

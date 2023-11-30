@@ -82,7 +82,7 @@ function EmployeeTable({employee,employeeList,setEmployee,setEmployeeList}){
         })
     }
 
-    const editemployee = (employee,setEmployee) => {
+    const editemployee = () => {
         setShowInput(true)
     }
 
@@ -129,7 +129,8 @@ function EmployeeTable({employee,employeeList,setEmployee,setEmployeeList}){
             emergencyZipcode: employee.emergencyZipcode,
         });
 
-        setShow(false)
+        handleClose()
+
 
         setEmployee({
         lastname: '',
@@ -181,7 +182,7 @@ function EmployeeTable({employee,employeeList,setEmployee,setEmployeeList}){
 
     const changeBtn = () => {
         setShow(true);
-        setShowInput(false)
+        setShowInput(false);
     }
 
     return(
