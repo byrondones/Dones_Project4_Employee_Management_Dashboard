@@ -52,6 +52,7 @@ function App() {
       emergencyEmail: '',
       emergencyCell: '',
       emergencyRelationship: '',
+      search: '',
   });
 
   return (

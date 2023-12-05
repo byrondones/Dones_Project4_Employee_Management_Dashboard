@@ -5,14 +5,18 @@ import Modal from 'react-bootstrap/Modal';
 
 import { getFirestore, collection, onSnapshot, doc, deleteDoc, updateDoc} from "firebase/firestore";
 import firebaseApp from "../firebaseConfig";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 import Employee from "./Employee";
 import EmployeeCard from "./EmployeeCard";
 import EditEmployee from "./EditEmployee";
+import Login from "../Auth/Login";
 
 function EmployeeTable({employee,employeeList,setEmployee,setEmployeeList}){
     const [show, setShow] = useState(false);
     const [showInput, setShowInput] = useState(false);
+    const [Authenticated, setAuthenticated] = useState(false);
+    const [userProperties, setUserProperties] = useState({});
 
     useEffect(()=>{
         const db = getFirestore(firebaseApp);
@@ -32,6 +36,19 @@ function EmployeeTable({employee,employeeList,setEmployee,setEmployeeList}){
         } catch (e){
             alert('Could not fetch Employee Data!')
         }
+
+        const auth = getAuth(firebaseApp);
+        
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+            setAuthenticated(true)
+            console.log(user.providerData);
+            setUserProperties(user);
+        } else {
+            // User is signed out
+            // ...
+        }
+        });
     },[])
 
     const handleClose = ()=> {setShow(false); setShowInput(false)};
@@ -185,9 +202,12 @@ function EmployeeTable({employee,employeeList,setEmployee,setEmployeeList}){
         setShowInput(false);
     }
 
+if(Authenticated){
     return(
         <>
             <div className="container-fluid">
+
+
                 <div className="col-sm-12">
                 <Table responsive>
                 <thead>
@@ -203,12 +223,13 @@ function EmployeeTable({employee,employeeList,setEmployee,setEmployeeList}){
                         <th>Employment Status</th>
                         <th>Salary (₱)</th>
                         <th>On-leave</th>
+                        <th>Role</th>
                         <th>Account Active</th>
                     </tr>
                 </thead>
 
                 <tbody hover="true">
-                    {       
+                    {
                         employeeList.map((employeeRecord) => (
                             <Employee
                             employeeID={employeeRecord.employee_id}
@@ -265,7 +286,7 @@ function EmployeeTable({employee,employeeList,setEmployee,setEmployeeList}){
                 scrollable='true'
                 >
         <Modal.Header closeButton>
-        <Modal.Title>Employee Card</Modal.Title>
+        <Modal.Title className="fw-bold">Employee Card</Modal.Title>
         </Modal.Header>
             <Modal.Body>
                 {
@@ -306,17 +327,10 @@ function EmployeeTable({employee,employeeList,setEmployee,setEmployeeList}){
                     </Button>
                     )
                 }
-            {/* <Button variant="warning" onClick={editemployee}>
-                Update
-            </Button> */}
 
             <Button variant="danger" onClick={deleteEmployee}>
                 Delete
             </Button>
-
-            {/* <Button variant="info" onClick={handleShowInputShow()}>
-                Back
-            </Button> */}
 
             <Button variant="secondary" onClick={handleClose}>
                 Close
@@ -325,5 +339,12 @@ function EmployeeTable({employee,employeeList,setEmployee,setEmployeeList}){
     </Modal>
         </>
     )
+    }else{
+        return (
+            <section>
+                <Login />
+            </section>
+        )
+    }
 }
 export default EmployeeTable
