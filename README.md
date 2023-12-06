@@ -1,4 +1,4 @@
-# Employee Records App
+# EMPLOYEE RECORDS APP
 
 ## Site
 https://employee-records-kappa.vercel.app/
