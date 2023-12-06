@@ -44,6 +44,9 @@ emergencyZipcode}){
                     {leave}
                 </td>
                 <td>
+                    {role}
+                </td>
+                <td>
                     {active}
                 </td>
 

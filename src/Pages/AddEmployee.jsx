@@ -1,4 +1,7 @@
 import { getFirestore, collection, addDoc } from "firebase/firestore";
+import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { useNavigate } from 'react-router-dom';
+
 import firebaseApp from "../firebaseConfig";
 
 import { useState } from 'react';
@@ -7,6 +10,7 @@ import Modal from 'react-bootstrap/Modal';
 
 function AddEmployee(){
     const [show, setShow] = useState(false);
+
     const handleClose = () => setShow(false);
 
     const [employeeList, setEmployeeList] = useState([]);
@@ -18,6 +22,7 @@ function AddEmployee(){
         gender: '',
         birthday: '',
         email: '',
+        password: '',
         phonenumber: '',
         address1: '',
         address2: '',
@@ -56,7 +61,11 @@ function AddEmployee(){
         }
     }
 
+    let navigate = useNavigate();
+
     const AddEmployeeInfo = () => {
+    if(employee.role === "Admin"){
+        //Add employee
         const db = getFirestore(firebaseApp);
         setEmployeeList(
             employeeList => [
@@ -73,6 +82,7 @@ function AddEmployee(){
                 gender: '',
                 birthday: '',
                 email: '',
+                password: '',
                 phonenumber: '',
                 address1: '',
                 address2: '',
@@ -102,15 +112,214 @@ function AddEmployee(){
                 emergencyRelationship: '',
             })
 
+    //register account
+    const auth = getAuth(firebaseApp);
+    createUserWithEmailAndPassword(auth, employee.email, employee.password)
+    .then((userCredential) => {
+        // Signed up 
+        const user = userCredential.user;
+        navigate("/employeelist");
+    })
+    .catch((error) => {
+        alert(error)
+    });
+    }else{
+                //Add employee
+                const db = getFirestore(firebaseApp);
+                setEmployeeList(
+                    employeeList => [
+                        ...employeeList, employee
+                    ]
+                );
+        
+                addDoc(collection(db, 'employeerecords'), employee);
+                    setEmployee({
+                        lastname: '',
+                        firstname: '',
+                        middlename: '',
+                        suffix: '',
+                        gender: '',
+                        birthday: '',
+                        email: '',
+                        password: '',
+                        phonenumber: '',
+                        address1: '',
+                        address2: '',
+                        street: '',
+                        barangay: '',
+                        city: '',
+                        province: '',
+                        postal: '',
+                        role: '',
+                        title: '',
+                        department: '',
+                        dateofhire: '',
+                        active: '',
+                        salary: '',
+                        status: '',
+                        yearsofcontract: '',
+                        wfh: '',
+                        leave:'',
+                        emergencyName: '',
+                        emergencyStreet: '',
+                        emergencyBarangay: '',
+                        emergencyCity: '',
+                        emergencyProvince: '',
+                        emergencyZipcode: '',
+                        emergencyEmail: '',
+                        emergencyCell: '',
+                        emergencyRelationship: '',
+                    })
+    }
+
     setShow(false)
     }
 
     return(
         <>
-        <h1 className="text-center pb-4 fw-bold">ADD EMPLOYEE</h1>
+        <h1 className="text-center fw-bold">ADD EMPLOYEE</h1>
         <hr />
         {/* Form */}
             <div className="container">
+            <div className="row">
+                    <h3 className="mb-3 mt-3">Employment Information</h3>
+                    <div className="col-sm-1"></div>
+                            <div className="col-sm-2">
+                            <label htmlFor="role" className="form-label fw-medium">Employee Role</label>
+                                <select className="form-select" id="role"
+                                onChange={
+                                    (e)=>setEmployee({
+                                        ...employee,
+                                        role: e.target.value,
+                                    })}
+                                >
+                                    <option selected></option>
+                                    <option value="Staff">Staff</option>
+                                    <option value="Admin">Admin</option>
+                                </select>
+                            </div>
+
+                            <div className="col-sm-2">
+                                <label htmlFor="title" className="form-label fw-medium">Job Title</label>
+                                <input type="text" id="title" className="form-control"
+                        onChange={
+                            (e)=>setEmployee({
+                                ...employee,
+                                title: e.target.value,
+                            })}
+                                />
+                            </div>
+
+                            <div className="col-sm-2">
+                                <label htmlFor="department" className="form-label fw-medium">Department</label>
+                                <input type="text" id="department" className="form-control"
+                        onChange={
+                            (e)=>setEmployee({
+                                ...employee,
+                                department: e.target.value,
+                            })}
+                                />
+                            </div>
+
+                            <div className="col-sm-2">
+                                <label htmlFor="dateofhire" className="form-label fw-medium">Date of Hire</label>
+                                <input type="date" id="dateofhire" className="form-control"
+                        onChange={
+                            (e)=>setEmployee({
+                                ...employee,
+                                dateofhire: e.target.value,
+                            })}
+                                />
+                            </div>
+                            <div className="col-sm-2">
+                            <label htmlFor="active" className="form-label fw-medium">Active</label>
+                            <select className="form-select" id="active"
+                        onChange={
+                            (e)=>setEmployee({
+                                ...employee,
+                                active: e.target.value,
+                            })}
+                            >
+                                <option selected></option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                            </div>
+                        </div>
+
+                        <div className="row mt-2">
+                        <div className="col-sm-1"></div>
+                            <div className="col-sm-5">
+                                <label htmlFor="salary" className="form-label fw-medium">Salary (₱)</label>
+                                <input type="number" id="salary" className="form-control" 
+                        onChange={
+                            (e)=>setEmployee({
+                                ...employee,
+                                salary: e.target.value,
+                            })}
+                                />
+                            </div>
+
+                            <div className="col-sm-5">
+                                <label htmlFor="salary" className="form-label fw-medium">On Leave</label>
+                                <select className="form-select" id="leave"
+                                onChange={
+                                    (e)=>setEmployee({
+                                        ...employee,
+                                        leave: e.target.value,
+                                    })}
+                                >
+                                    <option selected></option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                        </div>
+                    </div>
+
+                        <div className="row mt-2">
+                        <div className="col-sm-1"></div>
+                            <div className="col-sm-4">
+                                <label htmlFor="eStatus" className="form-label fw-medium">Employment Status</label>
+                                <select className="form-select" id="eStatus"
+                                onChange={
+                                    (e)=>setEmployee({
+                                        ...employee,
+                                        eStatus: e.target.value,
+                                    })}
+                                >
+                                    <option selected></option>
+                                    <option value="Full Time">Full Time</option>
+                                    <option value="Part Time">Part Time</option>
+                                    <option value="Contract">Contract</option>
+                                    <option value="Intern">Intern</option>
+                                </select>
+                            </div>
+                            <div className="col-sm-4">
+                                <label htmlFor="yearsofcontract" className="form-label fw-medium">Years of Contract</label>
+                                <input type="text" id="yearsofcontract" className="form-control" 
+                        onChange={
+                            (e)=>setEmployee({
+                                ...employee,
+                                yearsofcontract: e.target.value,
+                            })}
+                                />
+                            </div>
+                            <div className="col-sm-2">
+                            <label htmlFor="Wfh" className="form-label fw-medium">Work From Home</label>
+                            <select className="form-select" id="Wfh"
+                        onChange={
+                            (e)=>setEmployee({
+                                ...employee,
+                                wfh: e.target.value,
+                            })}
+                            >
+                                <option selected></option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                            </div>
+                        </div>
+
                 <h3 className="mt-5 mb-3">Personal Information</h3>
                     <div className="row">
                         <div className="col-sm-1"></div>
@@ -134,7 +343,7 @@ function AddEmployee(){
                                         ...employee,
                                         firstname: e.target.value,
                                     })}
-                                value={employee.firstname}
+                                    value={employee.firstname}
                                 />
                             </div>
 
@@ -146,7 +355,6 @@ function AddEmployee(){
                                         ...employee,
                                         middlename: e.target.value,
                                     })}
-                                value={employee.middlename}
                                 
                                 />
                             </div>
@@ -159,7 +367,6 @@ function AddEmployee(){
                                         ...employee,
                                         suffix: e.target.value,
                                     })}
-                                value={employee.suffix}
                                 >
                                     <option selected></option>
                                     <option value="Sr.">Sr.</option>
@@ -179,8 +386,7 @@ function AddEmployee(){
                                     ...employee,
                                     gender: e.target.value,
                                 })}
-                            value={employee.gender}
-                            
+
                             >
                                 <option selected></option>
                                 <option value="Male">Male</option>
@@ -188,7 +394,10 @@ function AddEmployee(){
                             </select>
                     </div>
 
-                    <div className="col-sm-3">
+                    {
+                        employee.role === "Admin"
+                        ?
+                        <div className="col-sm-2">
                         <label htmlFor="birthday" className="form-label fw-medium">Birthday</label>
                         <input type="date" id="birthday" className="form-control"
                         onChange={
@@ -196,12 +405,26 @@ function AddEmployee(){
                                 ...employee,
                                 birthday: e.target.value,
                             })}
-                        value={employee.birthday}
-                        
                         />
                     </div>
-
+                    :
                     <div className="col-sm-3">
+                    <label htmlFor="birthday" className="form-label fw-medium">Birthday</label>
+                    <input type="date" id="birthday" className="form-control"
+                    onChange={
+                        (e)=>setEmployee({
+                            ...employee,
+                            birthday: e.target.value,
+                        })}
+                    
+                    />
+                </div>
+                    }
+
+                    {
+                        employee.role === "Admin"
+                        ?
+                        <div className="col-sm-3">
                         <label htmlFor="email" className="form-label fw-medium">Email</label>
                         <input type="email" id="email" placeholder="John@Doe.com" className="form-control"
                         onChange={
@@ -209,11 +432,44 @@ function AddEmployee(){
                                 ...employee,
                                 email: e.target.value,
                             })}
-                        value={employee.email}
+                            value={employee.email}
+                        />
+                        </div>
+                        :
+                        <div className="col-sm-3">
+                        <label htmlFor="email" className="form-label fw-medium">Email</label>
+                        <input type="email" id="email" placeholder="John@Doe.com" className="form-control"
+                        onChange={
+                            (e)=>setEmployee({
+                                ...employee,
+                                email: e.target.value,
+                            })}
                         />
                     </div>
+                    }
 
-                    <div className="col-sm-3">
+                    {
+                        employee.role === "Admin"
+                        ?
+                        <div className="col-sm-2">
+                        <label htmlFor="password" className="form-label fw-medium">Password</label>
+                        <input type="password" id="password" className="form-control"
+                        onChange={
+                            (e)=>setEmployee({
+                                ...employee,
+                                password: e.target.value,
+                            })}
+                            value={employee.password}
+                        />
+                    </div>
+                    :
+                    null
+                    }
+
+                    {   
+                        employee.role === "Admin"
+                        ?
+                        <div className="col-sm-2">
                         <label htmlFor="phonenumber" className="form-label fw-medium">Phone Number</label>
                         <input type="number" id="phonenumber" placeholder="+63 123 456 7890" className="form-control"
                         onChange={
@@ -221,11 +477,21 @@ function AddEmployee(){
                                 ...employee,
                                 phonenumber: e.target.value,
                             })}
-                        value={employee.phonenumber}
                         />
-                    </div>
-                    
+                        </div>
+                    :
+                    <div className="col-sm-3">
+                    <label htmlFor="phonenumber" className="form-label fw-medium">Phone Number</label>
+                    <input type="number" id="phonenumber" placeholder="+63 123 456 7890" className="form-control"
+                    onChange={
+                        (e)=>setEmployee({
+                            ...employee,
+                            phonenumber: e.target.value,
+                        })}
+                    />
                 </div>
+                    }
+            </div>
 
             <div className="row mt-2">
                 <h3 className="mb-3 mt-3">Address</h3>
@@ -238,7 +504,6 @@ function AddEmployee(){
                                 ...employee,
                                 address1: e.target.value,
                             })}
-                        value={employee.address1}
                         />
                     </div>
 
@@ -250,7 +515,6 @@ function AddEmployee(){
                                 ...employee,
                                 address2: e.target.value,
                             })}
-                        value={employee.address2}
                         />
                     </div>
                 </div>
@@ -265,7 +529,6 @@ function AddEmployee(){
                                 ...employee,
                                 street: e.target.value,
                             })}
-                        value={employee.street}
                         />
                     </div>
 
@@ -277,7 +540,6 @@ function AddEmployee(){
                                 ...employee,
                                 barangay: e.target.value,
                             })}
-                        value={employee.barangay}
                         />
                     </div>
 
@@ -289,7 +551,6 @@ function AddEmployee(){
                                 ...employee,
                                 city: e.target.value,
                             })}
-                        value={employee.city}
                         />
                     </div>
 
@@ -301,7 +562,6 @@ function AddEmployee(){
                                 ...employee,
                                 province: e.target.value,
                             })}
-                        value={employee.province}
                         />
                     </div>
 
@@ -313,159 +573,11 @@ function AddEmployee(){
                                 ...employee,
                                 zipcode: e.target.value,
                             })}
-                        value={employee.zipcode}
                         />
                     </div>
                 </div>
 
-                    <div className="row">
-                    <h3 className="mb-3 mt-5">Employment Information</h3>
-                    <div className="col-sm-1"></div>
-                            <div className="col-sm-2">
-                            <label htmlFor="role" className="form-label fw-medium">Employee Role</label>
-                                <select className="form-select" id="role"
-                                onChange={
-                                    (e)=>setEmployee({
-                                        ...employee,
-                                        role: e.target.value,
-                                    })}
-                                value={employee.role}
-                                >
-                                    <option selected></option>
-                                    <option value="Staff">Staff</option>
-                                    <option value="Admin">Admin</option>
-                                </select>
-                            </div>
-
-                            <div className="col-sm-2">
-                                <label htmlFor="title" className="form-label fw-medium">Job Title</label>
-                                <input type="text" id="title" className="form-control"
-                        onChange={
-                            (e)=>setEmployee({
-                                ...employee,
-                                title: e.target.value,
-                            })}
-                        value={employee.title}
-                                />
-                            </div>
-
-                            <div className="col-sm-2">
-                                <label htmlFor="department" className="form-label fw-medium">Department</label>
-                                <input type="text" id="department" className="form-control"
-                        onChange={
-                            (e)=>setEmployee({
-                                ...employee,
-                                department: e.target.value,
-                            })}
-                        value={employee.department}
-                                />
-                            </div>
-
-                            <div className="col-sm-2">
-                                <label htmlFor="dateofhire" className="form-label fw-medium">Date of Hire</label>
-                                <input type="date" id="dateofhire" className="form-control"
-                        onChange={
-                            (e)=>setEmployee({
-                                ...employee,
-                                dateofhire: e.target.value,
-                            })}
-                        value={employee.dateofhire}
-                                />
-                            </div>
-                            <div className="col-sm-2">
-                            <label htmlFor="active" className="form-label fw-medium">Active</label>
-                            <select className="form-select" id="active"
-                        onChange={
-                            (e)=>setEmployee({
-                                ...employee,
-                                active: e.target.value,
-                            })}
-                        value={employee.active}
-                            >
-                                <option selected></option>
-                                <option value="Yes">Yes</option>
-                                <option value="No">No</option>
-                            </select>
-                            </div>
-                        </div>
-
-                        <div className="row mt-2">
-                        <div className="col-sm-1"></div>
-                            <div className="col-sm-5">
-                                <label htmlFor="salary" className="form-label fw-medium">Salary (₱)</label>
-                                <input type="number" id="salary" className="form-control" 
-                        onChange={
-                            (e)=>setEmployee({
-                                ...employee,
-                                salary: e.target.value,
-                            })}
-                        value={employee.salary}
-                                />
-                            </div>
-
-                            <div className="col-sm-5">
-                                <label htmlFor="salary" className="form-label fw-medium">On Leave</label>
-                                <select className="form-select" id="leave"
-                                onChange={
-                                    (e)=>setEmployee({
-                                        ...employee,
-                                        leave: e.target.value,
-                                    })}
-                                value={employee.leave}
-                                >
-                                    <option selected></option>
-                                    <option value="Yes">Yes</option>
-                                    <option value="No">No</option>
-                                </select>
-                        </div>
-                    </div>
-
-                        <div className="row mt-2">
-                        <div className="col-sm-1"></div>
-                            <div className="col-sm-4">
-                                <label htmlFor="status" className="form-label fw-medium">Employment Status</label>
-                                <select className="form-select" id="status"
-                                onChange={
-                                    (e)=>setEmployee({
-                                        ...employee,
-                                        eStatus: e.target.value,
-                                    })}
-                                value={employee.eStatus}
-                                >
-                                    <option selected></option>
-                                    <option value="Full Time">Full Time</option>
-                                    <option value="Part Time">Part Time</option>
-                                    <option value="Contract">Contract</option>
-                                    <option value="Intern">Intern</option>
-                                </select>
-                            </div>
-                            <div className="col-sm-4">
-                                <label htmlFor="yearsofcontract" className="form-label fw-medium">Years of Contract</label>
-                                <input type="text" id="yearsofcontract" className="form-control" 
-                        onChange={
-                            (e)=>setEmployee({
-                                ...employee,
-                                yearsofcontract: e.target.value,
-                            })}
-                        value={employee.yearsofcontract}
-                                />
-                            </div>
-                            <div className="col-sm-2">
-                            <label htmlFor="Wfh" className="form-label fw-medium">Work From Home</label>
-                            <select className="form-select" id="Wfh"
-                        onChange={
-                            (e)=>setEmployee({
-                                ...employee,
-                                wfh: e.target.value,
-                            })}
-                        value={employee.wfh}
-                            >
-                                <option selected></option>
-                                <option value="Yes">Yes</option>
-                                <option value="No">No</option>
-                            </select>
-                            </div>
-                        </div>
+                    
 
                     <div className="row">
                     <h3 className="mb-3 mt-5">Emergenct Contact Information</h3>
@@ -478,7 +590,6 @@ function AddEmployee(){
                                 ...employee,
                                 emergencyName: e.target.value,
                             })}
-                        value={employee.emergencyName}
                         />
                     </div>
                     </div>
@@ -493,7 +604,6 @@ function AddEmployee(){
                                 ...employee,
                                 emergencyEmail: e.target.value,
                             })}
-                        value={employee.emergencyEmail}
                         />
                     </div>
 
@@ -505,7 +615,6 @@ function AddEmployee(){
                                 ...employee,
                                 emergencyCell: e.target.value,
                             })}
-                        value={employee.emergencyCell}
                         />
                     </div>
                 </div>
@@ -520,7 +629,6 @@ function AddEmployee(){
                                 ...employee,
                                 emergencyStreet: e.target.value,
                             })}
-                        value={employee.emergencyStreet}
                         />
                     </div>
 
@@ -532,7 +640,6 @@ function AddEmployee(){
                                 ...employee,
                                 emergencyBarangay: e.target.value,
                             })}
-                        value={employee.emergencyBarangay}
                         />
                     </div>
 
@@ -544,7 +651,6 @@ function AddEmployee(){
                                 ...employee,
                                 emergencyCity: e.target.value,
                             })}
-                        value={employee.emergencyCity}
                         />
                     </div>
 
@@ -556,7 +662,6 @@ function AddEmployee(){
                                 ...employee,
                                 emergencyProvince: e.target.value,
                             })}
-                        value={employee.emergencyProvince}
                         />
                     </div>
 
@@ -568,7 +673,6 @@ function AddEmployee(){
                                 ...employee,
                                 emergencyZipcode: e.target.value,
                             })}
-                        value={employee.emergencyZipcode}
                         />
                     </div>
                 </div>
@@ -583,11 +687,10 @@ function AddEmployee(){
                                 ...employee,
                                 emergencyRelationship: e.target.value,
                             })}
-                        value={employee.emergencyRelationship}
                         />
                     </div>
                 </div>
-                <button className="mt-5 btn btn-dark d-block col-sm-10 mx-auto" onClick={SeeEmployee}>Submit</button>
+                <button className="mt-5 btn d-block col-sm-10 mx-auto text-white bg-dark" onClick={SeeEmployee}>Submit</button>
             </div>
 
         {/* Modal */}
@@ -616,7 +719,7 @@ function AddEmployee(){
                     Barangay: {`${employee.barangay}`} <br />
                     City: {`${employee.city}`} <br />
                     Province: {`${employee.province}`} <br />
-                    Zip Code: {`${employee.postal}`} <br />
+                    Zip Code: {`${employee.zipcode}`} <br />
                 </p>
 
                 <p>
@@ -626,7 +729,7 @@ function AddEmployee(){
                     Date of Hire: {`${employee.dateofhire}`} <br />
                     Active: {`${employee.active}`} <br />
                     Salary (₱): {`${employee.salary}`} <br />
-                    Status: {`${employee.status}`} <br />
+                    Status: {`${employee.eStatus}`} <br />
                     Years of Contract: {`${employee.yearsofcontract}`} <br />
                     Work From Home: {`${employee.wfh}`} <br />
                     On-leave: {`${employee.leave}`} <br />

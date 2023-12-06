@@ -1,10 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap/dist/js/bootstrap.js'
-import { ChakraProvider } from '@chakra-ui/react'
 
-import React, { useState, useEffect } from "react";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
-
+import React, { useState } from "react";
 
 import AdminDashboard from './Pages/AdminDashboard';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -13,9 +10,6 @@ import AddEmployee from './Pages/AddEmployee';
 import Login from './Auth/Login';
 
 function App() {
-  const [authenticated, setAuthenticated] = useState(false);
-  const [userProperties, setUserProperties] = useState({});
-
   const [employeeList, setEmployeeList] = useState([]);
   const [employee, setEmployee] = useState({
       lastname: '',
@@ -52,6 +46,7 @@ function App() {
       emergencyEmail: '',
       emergencyCell: '',
       emergencyRelationship: '',
+      search: '',
   });
 
   return (
