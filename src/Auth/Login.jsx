@@ -34,7 +34,7 @@ function Login(){
         <div className="container">
                 <div className="row" style={{height:750}}>
                     <div className="col-sm-4 mx-auto my-auto">
-                        <img src="https://cdn-icons-png.flaticon.com/512/5673/5673264.png" alt="" className='img-fluid'/>
+                        <img src="/src/images/1.png" alt="" className='img-fluid'/>
                     </div>
 
                     <div className="col-sm-6 my-auto">
