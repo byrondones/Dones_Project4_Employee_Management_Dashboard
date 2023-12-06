@@ -61,7 +61,7 @@ function App() {
                   setEmployee={setEmployee}
                   />} />
                 <Route path='addemployee' element={<AddEmployee/>} />
-                <Route path='login' element={<Login />} />
+                <Route path='/' element={<Login />} />
               </Route>
             </Routes>
           </BrowserRouter>
