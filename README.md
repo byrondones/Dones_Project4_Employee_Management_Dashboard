@@ -1,5 +1,11 @@
 # Employee Records App
+
+## Site
 https://employee-records-kappa.vercel.app/
+
+Account:
+Email: John@test.com
+Password: password
 
 ## Overview
 The Employee Records App is a web application designed to help organizations manage and keep track of their employee records efficiently.
@@ -16,10 +22,3 @@ The Employee Records App is a web application designed to help organizations man
 - React
 - JS
 - Firebase
-
-## Site
-
-
-Account:
-Email: John@test.com
-Password: password
