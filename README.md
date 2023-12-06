@@ -26,5 +26,5 @@ The Employee Records App is a web application designed to help organizations man
 - Firebase
 
 <b>
-  **NOTE** That is is a REAL world example of a employee records website that where only the admins can create accounts and use the employee app. thank you.
+  **NOTE** That is is a REAL world example of a employee records website. Where only the admins can create accounts and use the employee app.
 <b>
