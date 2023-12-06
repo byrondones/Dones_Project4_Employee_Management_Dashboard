@@ -1,6 +1,6 @@
 import { getFirestore, collection, addDoc } from "firebase/firestore";
 import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import {Link, useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import firebaseApp from "../firebaseConfig";
 
@@ -53,14 +53,7 @@ function AddEmployee(){
     });
 
     const SeeEmployee = () => {
-        if(employee.lastname === ''||employee.firstname === ''||employee.middlename === ''||
-        employee.gender === ''||employee.birthday === ''||employee.email === ''||employee.phonenumber === ''||
-        employee.address1 === ''||employee.street === ''||employee.barangay === ''||employee.city === ''||
-        employee.city === ''||employee.province === ''||employee.postal === ''||employee.title === ''||employee.department === ''||
-        employee.dateofhire === ''||employee.active === ''||employee.salary === ''||employee.status === ''||employee.yearsofcontract === ''||
-        employee.wfh === ''||employee.emergencyName === ''||employee.emergencyStreet === ''||employee.emergencyBarangay === ''||employee.emergencyCity === ''||
-        employee.emergencyProvince === ''||employee.emergencyPostal === ''||employee.emergencyEmail === ''||employee.emergencyCell === ''||
-        employee.emergencyRelationship === '')
+        if(employee.lastname === '')
         {
             alert("Missing fields!");
         }else{
@@ -71,18 +64,7 @@ function AddEmployee(){
     let navigate = useNavigate();
 
     const AddEmployeeInfo = () => {
-
-    const auth = getAuth(firebaseApp);
-    createUserWithEmailAndPassword(auth, employee.email, employee.password)
-    .then((userCredential) => {
-        // Signed up 
-        const user = userCredential.user;
-
-        // updateProfile(auth.currentUser, {
-        //     displayName: employee.firstname
-        // });
-        navigate("/employeelist");
-
+    if(employee.role === "Admin"){
         //Add employee
         const db = getFirestore(firebaseApp);
         setEmployeeList(
@@ -129,22 +111,78 @@ function AddEmployee(){
                 emergencyCell: '',
                 emergencyRelationship: '',
             })
+
+    //register account
+    const auth = getAuth(firebaseApp);
+    createUserWithEmailAndPassword(auth, employee.email, employee.password)
+    .then((userCredential) => {
+        // Signed up 
+        const user = userCredential.user;
+        navigate("/employeelist");
     })
     .catch((error) => {
         alert(error)
     });
+    }else{
+                //Add employee
+                const db = getFirestore(firebaseApp);
+                setEmployeeList(
+                    employeeList => [
+                        ...employeeList, employee
+                    ]
+                );
+        
+                addDoc(collection(db, 'employeerecords'), employee);
+                    setEmployee({
+                        lastname: '',
+                        firstname: '',
+                        middlename: '',
+                        suffix: '',
+                        gender: '',
+                        birthday: '',
+                        email: '',
+                        password: '',
+                        phonenumber: '',
+                        address1: '',
+                        address2: '',
+                        street: '',
+                        barangay: '',
+                        city: '',
+                        province: '',
+                        postal: '',
+                        role: '',
+                        title: '',
+                        department: '',
+                        dateofhire: '',
+                        active: '',
+                        salary: '',
+                        status: '',
+                        yearsofcontract: '',
+                        wfh: '',
+                        leave:'',
+                        emergencyName: '',
+                        emergencyStreet: '',
+                        emergencyBarangay: '',
+                        emergencyCity: '',
+                        emergencyProvince: '',
+                        emergencyZipcode: '',
+                        emergencyEmail: '',
+                        emergencyCell: '',
+                        emergencyRelationship: '',
+                    })
+    }
 
     setShow(false)
     }
 
     return(
         <>
-        <h1 className="text-center pb-4 fw-bold">ADD EMPLOYEE</h1>
+        <h1 className="text-center fw-bold">ADD EMPLOYEE</h1>
         <hr />
         {/* Form */}
             <div className="container">
             <div className="row">
-                    <h3 className="mb-3 mt-5">Employment Information</h3>
+                    <h3 className="mb-3 mt-3">Employment Information</h3>
                     <div className="col-sm-1"></div>
                             <div className="col-sm-2">
                             <label htmlFor="role" className="form-label fw-medium">Employee Role</label>
@@ -652,7 +690,7 @@ function AddEmployee(){
                         />
                     </div>
                 </div>
-                <button className="mt-5 btn btn-dark d-block col-sm-10 mx-auto" onClick={SeeEmployee}>Submit</button>
+                <button className="mt-5 btn d-block col-sm-10 mx-auto text-white bg-dark" onClick={SeeEmployee}>Submit</button>
             </div>
 
         {/* Modal */}

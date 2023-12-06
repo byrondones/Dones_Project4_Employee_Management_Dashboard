@@ -2,6 +2,7 @@ import {Link, useNavigate} from 'react-router-dom';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import firebaseApp from "../firebaseConfig";
 import { useState } from 'react';
+import '../Auth/Login.css'
 function Login(){
 
     
@@ -30,19 +31,24 @@ function Login(){
         
     }
     return(
-        <div className="row">
-            <div className="container border p-5 rounded my-auto">
-                <div className="col-sm-12">
-                <h1 className="fw-bold">Login</h1>
-                    <p>Enter your email and password to login.</p>
-                    <label htmlFor="email">Email</label>
-                    <input id="email" type="email" className="form-control" onChange={(e)=>setEmail(e.target.value)} value={email}/>
-                    <label htmlFor="password" className="mt-3">Password</label>
-                    <input id="password" type="password" className="form-control" onChange={(e)=>setPassword(e.target.value)} value={password}/>
-                    <button className="btn btn-dark mt-3" onClick={()=>handleLogin()}>Login</button>
+        <div className="container">
+                <div className="row" style={{height:750}}>
+                    <div className="col-sm-4 mx-auto my-auto">
+                        <img src="https://cdn-icons-png.flaticon.com/512/5673/5673264.png" alt="" className='img-fluid'/>
+                    </div>
+
+                    <div className="col-sm-6 my-auto">
+                        <h1 className="fw-bold">EMPLOYEE RECORDS</h1>
+                        <p>Enter your email and password to login.</p>
+                        <label htmlFor="email" className='fw-bold'>Email</label>
+                        <input id="email" type="email" className="form-control" onChange={(e)=>setEmail(e.target.value)} value={email}/>
+                        <label htmlFor="password" className="mt-3 fw-bold">Password</label>
+                        <input id="password" type="password" className="form-control" onChange={(e)=>setPassword(e.target.value)} value={password}/>
+                        <button className="btn mt-3 text-white form-control bg-dark" onClick={()=>handleLogin()}>Login</button>
+
+                    </div>
                 </div>
             </div>
-        </div>
     )
 }
 export default Login

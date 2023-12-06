@@ -206,13 +206,10 @@ if(Authenticated){
     return(
         <>
             <div className="container-fluid">
-
-
                 <div className="col-sm-12">
-                <Table responsive>
+                <Table responsive hover="true" className="border rounded-5 shadow">
                 <thead>
                     <tr className="text-center">
-
                         <th>Last Name</th>
                         <th>First Name</th>
                         <th>Middle Name</th>

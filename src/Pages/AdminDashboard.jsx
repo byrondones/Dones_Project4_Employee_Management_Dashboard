@@ -40,48 +40,49 @@ function AdminDashboard(){
             {
                 authenticated
                 ?
-                <nav class="navbar navbar-expand-lg bg-dark">
-                <div class="container-fluid justify-content-start">
-                    {
+                <nav class="navbar navbar-expand-lg">
+                <div class="container-fluid">
+                <div className="justify-content-start">
+                {
                         authenticated
                         ?
-                        <Link to="employeelist" className="text-decoration-none text-white me-5">
+                        <Link to="employeelist" className="text-decoration-none me-5 text-dark fw-bold">
                             Employee List
                         </Link>
                         :
                         null
                     }
-    
                     {
                         authenticated
                         ?
-                        <Link to="addemployee" className="text-decoration-none text-white me-5">
+                        <Link to="addemployee" className="text-decoration-none me-3 text-dark fw-bold">
                             Add Employee
                         </Link>
                         :
                         null
                     }
-                    
-    
+                </div>
+
+                <div className="justify-content-end">
+                    {
+                        authenticated
+                        ?
+                        <Link to="login" className="text-decoration-none me-5 text-dark fw-bold" onClick={logout}>
+                            Logout
+                        </Link>
+                        :
+                        null
+                    }
                 </div>
     
-                    <div className="justify-content-end">
-                    {
-                            authenticated
-                            ?
-                            <Link to="login" className="text-decoration-none text-white me-5" onClick={logout}>
-                                Logout
-                            </Link>
-                            :
-                            null
-                        }
-                    </div>
+                </div>
                 </nav>
+
                 :
                 null
             }
 
-        <div className="m-5">
+        <div className="m-3">
             <Outlet>
 
             </Outlet>
