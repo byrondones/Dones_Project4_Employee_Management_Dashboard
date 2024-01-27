@@ -24,4 +24,4 @@ dist-ssr
 *.sw?
 
 # Ignoring firebase config file
-src/firebaseConfig.jsx
+firebaseConfig
