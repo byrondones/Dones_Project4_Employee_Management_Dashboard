@@ -1,3 +1,6 @@
+# Ignoring firebase config file
+/src/firebaseConfig.jsx
+
 # Logs
 logs
 *.log
@@ -22,6 +25,3 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-
-# Ignoring firebase config file
-/src/firebaseConfig.jsx
