@@ -22,4 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-/firebaseConfig.jsx
+
+# Ignoring firebase config file
+/Src/firebaseConfig.jsx
