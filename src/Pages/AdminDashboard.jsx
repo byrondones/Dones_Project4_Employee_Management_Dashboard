@@ -29,7 +29,7 @@ function AdminDashboard(){
         const auth = getAuth(firebaseApp);
         signOut(auth).then(() => {
             setAuthenticated(false)
-            navigate("/login");
+            navigate("/");
         }).catch((error) => {
         // An error happened.
         });

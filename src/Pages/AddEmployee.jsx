@@ -53,7 +53,14 @@ function AddEmployee(){
     });
 
     const SeeEmployee = () => {
-        if(employee.lastname === '')
+        if(employee.lastname === ''||employee.firstname === ''||employee.middlename === ''||
+        employee.gender === ''||employee.birthday === ''||employee.email === ''||employee.phonenumber === ''||
+        employee.address1 === ''||employee.street === ''||employee.barangay === ''||employee.city === ''||
+        employee.city === ''||employee.province === ''||employee.postal === ''||employee.title === ''||employee.department === ''||
+        employee.dateofhire === ''||employee.active === ''||employee.salary === ''||employee.status === ''||employee.yearsofcontract === ''||
+        employee.wfh === ''||employee.emergencyName === ''||employee.emergencyStreet === ''||employee.emergencyBarangay === ''||employee.emergencyCity === ''||
+        employee.emergencyProvince === ''||employee.emergencyPostal === ''||employee.emergencyEmail === ''||employee.emergencyCell === ''||
+        employee.emergencyRelationship === '')
         {
             alert("Missing fields!");
         }else{
@@ -580,10 +587,10 @@ function AddEmployee(){
                     
 
                     <div className="row">
-                    <h3 className="mb-3 mt-5">Emergenct Contact Information</h3>
+                    <h3 className="mb-3 mt-5">Emergency Contact Information</h3>
                     <div className="col-sm-1"></div>
                     <div className="col-sm-10">
-                        <label htmlFor="emergencyName" className="form-label fw-medium">Full Name</label>
+                        <label htmlFor="emergencyName" className="form-label fw-medium">Full Name</label> 
                         <input type="text" id="emergencyName" className="form-control"
                         onChange={
                             (e)=>setEmployee({

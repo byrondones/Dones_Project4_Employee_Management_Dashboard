@@ -8,6 +8,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import EmployeeTable from './Pages/EmployeeTable';
 import AddEmployee from './Pages/AddEmployee';
 import Login from './Auth/Login';
+import NotFound from './Pages/NotFound';
 
 function App() {
   const [employeeList, setEmployeeList] = useState([]);
@@ -53,7 +54,8 @@ function App() {
     <>
         <BrowserRouter>
             <Routes>
-              <Route path='/' element={<AdminDashboard />}>
+            <Route path='/' element={<Login />} />
+              <Route path='admindashboard' element={<AdminDashboard />}>
                 <Route path='employeelist' element={<EmployeeTable
                   employeeList={employeeList}
                   employee={employee}
@@ -61,7 +63,7 @@ function App() {
                   setEmployee={setEmployee}
                   />} />
                 <Route path='addemployee' element={<AddEmployee/>} />
-                <Route path='login' element={<Login />} />
+                <Route path="*" element={<NotFound/>} />
               </Route>
             </Routes>
           </BrowserRouter>

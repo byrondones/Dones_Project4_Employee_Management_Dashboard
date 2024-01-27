@@ -1,4 +1,4 @@
-import {Link, useNavigate} from 'react-router-dom';
+import { useNavigate,Outlet} from 'react-router-dom';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import firebaseApp from "../firebaseConfig";
 import { useState } from 'react';
@@ -19,7 +19,7 @@ function Login(){
             .then((userCredential) => {
             // Signed in 
             const user = userCredential.user;
-            navigate("/employeelist");
+            navigate("/admindashboard");
             // ...
             })
             .catch((error) => {
@@ -45,7 +45,6 @@ function Login(){
                         <label htmlFor="password" className="mt-3 fw-bold">Password</label>
                         <input id="password" type="password" className="form-control" onChange={(e)=>setPassword(e.target.value)} value={password}/>
                         <button className="btn mt-3 text-white form-control bg-dark" onClick={()=>handleLogin()}>Login</button>
-
                     </div>
                 </div>
             </div>

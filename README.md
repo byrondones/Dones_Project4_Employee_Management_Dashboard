@@ -1,8 +1,30 @@
-# React + Vite
+# EMPLOYEE RECORDS APP
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Site
+https://employee-records-kappa.vercel.app/
 
-Currently, two official plugins are available:
+Account:
+<br />
+Email: John@test.com
+<br />
+Password: password
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Overview
+The Employee Records App is a web application designed to help organizations manage and keep track of their employee records efficiently.
+
+## Features
+- Add new employee records, including personal details and contact information.
+- Edit and update existing employee records.
+- Delete employee records when necessary.
+- User-friendly interface for easy navigation and interaction.
+
+## Technologies Used
+- HTML
+- CSS
+- React
+- JS
+- Firebase
+
+<b>
+  **NOTE** That is is a REAL world example of a employee records website. Where only the admins can create accounts and use the employee app.
+<b>
